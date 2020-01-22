@@ -25,6 +25,9 @@ function wptournreg_edit( $atts = [] ) {
 	
 	$fields = preg_split( '/\s*,\s*/', $a[ 'display_fields' ]);
 	
+	wp_enqueue_script( 'wptournreg' );
+	wp_enqueue_style( 'wptournreg' );
+	
 	/* create name list */
 	$names = [];
 	foreach( $result as $participant ) {

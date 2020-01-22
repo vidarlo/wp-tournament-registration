@@ -25,9 +25,10 @@ function wptournreg_get_list( $atts = [] ) {
 	if ( empty ( $a[ 'notsortable' ] ) ) {
 		
 		wp_enqueue_script( 'wptournregtablesorter' );
-		wp_enqueue_script( 'wptournreg' );
 		wp_enqueue_style( 'wptournregtablesorter' );
 	}
+	wp_enqueue_script( 'wptournreg' );
+	wp_enqueue_style( 'wptournreg' );
 	
 	require_once WP_TOURNREG_DATABASE_PATH . 'select.php';
 	$result = wptournreg_select_tournament( $a[ 'tournament_id' ] ); 

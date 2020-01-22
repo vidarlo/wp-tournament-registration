@@ -6,15 +6,7 @@ function wptournreg_load_tablesort() {
 		'wptournregtablesorter', // $handle
 		WP_TOURNREG_TBSORTJS_URL, // $url
 		array( 'jquery' ), // $deps
-		'2.31.2', // $ver
-		true // $in_footer
-	);
-	
-	wp_register_script(
-		'wptournreg', // $handle
-		WP_TOURNREG_JS_URL, // $url
-		array( 'wptournregtablesorter' ), // $deps
-		null, // $ver
+		WP_TOURNREG_TBSORT_VER, // $ver
 		true // $in_footer
 	);
 		
@@ -22,7 +14,7 @@ function wptournreg_load_tablesort() {
 		'wptournregtablesorter', // $handle
 		WP_TOURNREG_TBSORTCSS_URL, // $url
 		array(), // $deps
-		'2.31.2', // $ver
+		WP_TOURNREG_TBSORT_VER, // $ver
 		false // $in_footer
 	);
 }

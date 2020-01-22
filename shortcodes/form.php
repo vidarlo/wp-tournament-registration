@@ -13,6 +13,9 @@ function wp_tournreg_get_form( $atts = [], $content = null ) {
 		'tournament_id' => null,
 	), $atts );
 	
+	wp_enqueue_script( 'wptournreg' );
+	wp_enqueue_style( 'wptournreg' );
+	
 	/* error if tournament id is missing */
 	if ( empty ( $a[ 'tournament_id' ] ) ) {
 		

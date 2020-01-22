@@ -12,6 +12,10 @@ Description: Simple tournament registration form
  
 */
 
+/* VERSIONS */
+define( "WP_TOURNREG_MAIN_VER", '1.0.0' );
+define( "WP_TOURNREG_TBSORT_VER", '2.32.2' );
+
 /* PATHES */
 define( "WP_TOURNREG_ASSETS_PATH", plugin_dir_path( __FILE__ ) . 'assets' . DIRECTORY_SEPARATOR );
 define( "WP_TOURNREG_DATABASE_PATH", plugin_dir_path( __FILE__ ) . 'db' . DIRECTORY_SEPARATOR );
@@ -21,6 +25,7 @@ define( "WP_TOURNREG_SHORTCODE_PATH", plugin_dir_path( __FILE__ ) . 'shortcodes'
 
 /* URLs */
 define( "WP_TOURNREG_ACTION_URL", esc_url( admin_url('admin-post.php') ) );
+define( "WP_TOURNREG_CSS_URL", plugins_url( 'assets/wptournreg.css', __FILE__ ) );
 define( "WP_TOURNREG_JS_URL", plugins_url( 'assets/wptournreg.js', __FILE__ ) );
 define( "WP_TOURNREG_TBSORTJS_URL", plugins_url( 'assets/tablesorter-master/js/jquery.tablesorter.js', __FILE__ ) );
 define( "WP_TOURNREG_TBSORTCSS_URL", plugins_url( 'assets/tablesorter-master/css/theme.default.css', __FILE__ ) );
@@ -45,4 +50,5 @@ require_once WP_TOURNREG_SHORTCODE_PATH . 'list.php';
 require_once WP_TOURNREG_SHORTCODE_PATH . 'txt.php';
 
 require_once WP_TOURNREG_ASSETS_PATH . 'tablesort.php';
+require_once WP_TOURNREG_ASSETS_PATH . 'load.php';
 
