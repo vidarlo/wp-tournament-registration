@@ -1,6 +1,6 @@
 # WP Tournament Registration
 
-*A WordPress plugin for registering players with tournaments
+*A WordPress plugin for registering players with tournaments*
 
 ## License
 
