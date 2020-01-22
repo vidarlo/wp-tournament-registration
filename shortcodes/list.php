@@ -32,6 +32,9 @@ function wptournreg_get_list( $atts = [] ) {
 	require_once WP_TOURNREG_DATABASE_PATH . 'select.php';
 	$result = wptournreg_select_tournament( $a[ 'tournament_id' ] ); 
 	
+	require_once WP_TOURNREG_DATABASE_PATH . 'scheme.php';
+	$scheme = wptournreg_get_field_list();
+	
 	$fields = preg_split( '/\s*,\s*/', $a[ 'display_fields' ]);
 	$protected_fields = preg_split( '/\s*,\s*/', $a[ 'protected_fields' ]);
 	
@@ -83,6 +86,10 @@ function wptournreg_get_list( $atts = [] ) {
 				if ( $protected && in_array( $field, $protected_fields ) && !empty( $participant->{ $field } ) ) {
 					
 						$value = '***';
+				}
+				else if ( preg_match( '/bool|int\(1\)/i', $scheme[ $field ] ) ) {
+					
+					$value = ( $participant->{ $field } == 1) ? 'X' : '';;
 				}
 				else if ( strcmp( $field, 'email' ) === 0 ) {
 					
