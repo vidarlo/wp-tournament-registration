@@ -36,7 +36,7 @@ function wptournreg_get_fields( $atts = [] ) {
 	
 	/* sizes */
 	$bigsize = 50;
-	$smallsize = 12;
+	$smallsize = 15;
 	
 	if ( $field == 'id' || $field == 'time' ) {
 		
@@ -50,6 +50,10 @@ function wptournreg_get_fields( $atts = [] ) {
 	else if ( $field == 'email' ) {
 		
 		return "<p$id$class$style>$label<input$id$class$name$required$placeholder type='email' size='$bigsize'></p>";
+	}
+	else if ( preg_match( '/^phone\d+/i', $scheme[ $field ] ) ) {
+		
+		return "<p$id$class$style>$label<input$id$class$name$required$placeholder type='tell' size='$mallsize'></p>";
 	}
 	else if ( $scheme[ $field ] == 'text' ) {
 		

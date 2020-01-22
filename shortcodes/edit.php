@@ -46,7 +46,7 @@ function wptournreg_edit( $atts = [] ) {
 	/* create forms */
 	
 	$bigsize = 50;
-	$smallsize = 12;
+	$smallsize = 15;
 	
 	$html .= '<div id="wptournregedit-formscontainer">';
 	
@@ -72,6 +72,10 @@ function wptournreg_edit( $atts = [] ) {
 		
 					$html .= '<input type="email" name="email" value="' . $participant->{ 'email' } . '" size="' . $bigsize . '">';
 				}
+				else if ( preg_match( '/^phone\d+/i', $scheme[ $field ] ) ) {
+					
+					$html .= '<input type="tel" value="' . $participant->{ $field } . '" name="' . $field . '" size="' . $mallsize . '">';
+				}
 				else if ( $scheme[ $field ] == 'text' ) {
 					
 					$html .= '<textarea cols="' . $bigsize . '" rows="8" name="' . $field . '"></textarea>';
@@ -86,7 +90,7 @@ function wptournreg_edit( $atts = [] ) {
 				}
 				else if ( preg_match( '/int\(/i', $scheme[ $field ] ) ) {
 					
-					$html .= '<input type="text" value="' . $participant->{ $field } . '" name="' . $field . '" size="' . $smallsize . '">';
+					$html .= '<input type="text" value="' . $participant->{ $field } .'"' . ' name="' . $field . '" size="' . $smallsize . '">';
 				}
 				else {
 					
@@ -118,14 +122,14 @@ function wptournreg_edit( $atts = [] ) {
 
 add_shortcode( 'wptournregedit', 'wptournreg_edit' );
 	
-	/* Action hook of registration form */
+/* Action hook of registration form */
 function wptournreg_edit_participant() {
-	
-	global $wpdb;
 	
 	echo '<html><head></head></html><body><p>';
 	
 	if ( array_key_exists( 'delete1', $_POST ) && array_key_exists( 'delete2',$_POST ) && array_key_exists( 'delete3', $_POST ) ) {
+		
+		global $wpdb;
 
 		if ( $wpdb->delete( WP_TOURNREG_DATA_TABLE, array( 'id' => $_POST[ 'id' ] ) ) === 1 ) {
 		
@@ -139,26 +143,10 @@ function wptournreg_edit_participant() {
 		}
 	}
 	else {
-		
-		require_once WP_TOURNREG_DATABASE_PATH . 'scheme.php';
-	    $scheme = wptournreg_get_field_list();
-		
-		$values = [];
-		foreach( $scheme as $field => $type ) {
 			
-			
-			if ( preg_match( '/bool|int\(1\)/i', $type ) ) {
-				
-				$values[ $field ] = ( isset( $_POST[ $field ] ) ) ? 1 : 0;
-			}
-			else if ( isset( $_POST[ $field ] ) ) {
-				
-				$values[ $field ] = $_POST[ $field ];				
-			}
-		}
+		require_once WP_TOURNREG_DATABASE_PATH . 'update.php';
 		
-		
-		if ( $wpdb->update( WP_TOURNREG_DATA_TABLE, $values, array( 'id' => $_POST[ 'id' ] ) ) === 1 ) {
+		if ( wptournreg_update_data() === 1 ) {
 		
 			echo __( 'Entry updated.', 'wp-tournament-registration');
 			echo '</p><p>';

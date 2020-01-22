@@ -26,7 +26,7 @@ function wptournreg_insert_data() {
 			}
 			else if ( preg_match( '/int\(/i', $scheme[ $field ] ) ) {
 				
-				$prepared = ( is_int( $value ) ) ? $value : 'FALSE'
+				$prepared = ( is_int( $value ) ) ? $value : 'NULL';
 				;
 			}
 			else {
@@ -39,8 +39,8 @@ function wptournreg_insert_data() {
 		}
 	}
 	
-	array_push( $fields, 'time' );
-	array_push( $data, time() );
+	$fields[] = 'time';
+	$data[] = time();
 	
 	$wpdb->query( 'INSERT INTO ' . WP_TOURNREG_DATA_TABLE . '(' . implode( ', ', $fields ) . ') VALUES (' . implode( ', ', $data ) . ');' );
 }
