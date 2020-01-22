@@ -53,7 +53,7 @@ function wptournreg_get_txt() {
 	
 	$formatted = [];
 	
-	$linebreak = ( !isset( $_POST[ 'linebreak' ] ) || empty ( $_POST[ 'linebreak' ] ) ) ? '' : "\n";
+	$linebreak = ( !array_key_exists( 'linebreak', $_POST ) || empty ( $_POST[ 'linebreak' ] ) ) ? '' : "\n";
 	
 	foreach( $result as $participant ) {
 		
