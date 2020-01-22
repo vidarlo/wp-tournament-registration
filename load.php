@@ -13,7 +13,6 @@ Description: Simple tournament registration form
 */
 
 /* PATHES */
-
 define( "WP_TOURNREG_ASSETS_PATH", plugin_dir_path( __FILE__ ) . 'assets' . DIRECTORY_SEPARATOR );
 define( "WP_TOURNREG_DATABASE_PATH", plugin_dir_path( __FILE__ ) . 'db' . DIRECTORY_SEPARATOR );
 define( "WP_TOURNREG_INSTALL_PATH", plugin_dir_path( __FILE__ ) . 'install' . DIRECTORY_SEPARATOR );

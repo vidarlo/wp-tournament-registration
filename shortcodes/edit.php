@@ -82,7 +82,7 @@ function wptournreg_edit( $atts = [] ) {
 				}
 				else if ( preg_match( '/bool|int\(1\)/i', $scheme[ $field ] ) ) {
 					
-					$html .= '<input type="checkbox"' . ( $participant->{ $field } ? ' checked' : '' ) . '" name="' . $field . '">';
+					$html .= '<input type="checkbox"' . ( $participant->{ $field } == 1 ? ' checked' : '' ) . ' name="' . $field . '">';
 				}
 				else if ( preg_match( '/int\(/i', $scheme[ $field ] ) ) {
 					
