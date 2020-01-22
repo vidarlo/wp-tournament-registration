@@ -21,6 +21,7 @@ define( "WP_TOURNREG_LOCALIZATION_PATH", plugin_dir_path( __FILE__ ) . 'language
 define( "WP_TOURNREG_SHORTCODE_PATH", plugin_dir_path( __FILE__ ) . 'shortcodes' . DIRECTORY_SEPARATOR );
 
 /* URLs */
+define( "WP_TOURNREG_ACTION_URL", esc_url( admin_url('admin-post.php') ) );
 define( "WP_TOURNREG_JS_URL", plugins_url( 'assets/wptournreg.js', __FILE__ ) );
 define( "WP_TOURNREG_TBSORTJS_URL", plugins_url( 'assets/tablesorter-master/js/jquery.tablesorter.js', __FILE__ ) );
 define( "WP_TOURNREG_TBSORTCSS_URL", plugins_url( 'assets/tablesorter-master/css/theme.default.css', __FILE__ ) );

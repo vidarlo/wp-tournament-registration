@@ -20,7 +20,7 @@ function wptournreg_insert_data() {
 				
 				$prepared = "'" . $wpdb->_real_escape( $value ) . "'";
 			}
-			else if ( preg_match( '/int\(1\)/i', $scheme[ $field ] ) ) {
+			else if ( preg_match( '/bool|int\(1\)/i', $scheme[ $field ] ) ) {
 				
 				$prepared = 'TRUE';
 			}

@@ -7,9 +7,6 @@ function wptournreg_edit( $atts = [] ) {
     $atts = array_change_key_case((array)$atts, CASE_LOWER);
 	
 	$a = shortcode_atts( array(
-		'class' => null,
-		'css' => null,
-		'css_id' => null,
 		'display_fields' => null,
 		'tournament_id' => null,
 	), $atts );
@@ -36,17 +33,144 @@ function wptournreg_edit( $atts = [] ) {
 	}
 	ksort( $names );
 	
+	/* names as HTML selection list */
+	$html = '<select name="wptournregedit-select">';
 	
+	foreach( $names as $participant => $id ) {
+		
+		$html .= '<option value="#wptournregedit-participant' . $id . '">' . $participant . '</option>';
+	}
 	
+	$html .= '</select>';
 	
-/*	foreach( $result as $participant ) {
+	/* create forms */
+	
+	$bigsize = 50;
+	$smallsize = 12;
+	
+	$html .= '<div id="wptournregedit-formscontainer">';
+	
+	foreach( $result as $participant ) {
+		
+		$html .= '<form id="wptournregedit-participant' . $participant->{ 'id' } . '" class="wptournregedit-participant" method="POST" action="' . WP_TOURNREG_ACTION_URL . '" target=_blank"><input type="hidden" name="id" value="' . $participant->{ 'id' } . '">';
 		
 		foreach( $fields as $field ) {
 			
-			
+			if ( array_key_exists( $field, $scheme ) ) {
+				
+				$html .= '<p><label for="' . $field . '"><kbd>' . $field . '</kbd></label>';
+				
+				if ( $field == 'id' ) { 
+				
+					$html .= $participant->{ $field };
+				}
+				else if ( $field == 'time' ) { 
+				
+					$html .= wp_date( get_option( 'date_format' ), $participant->{ 'time' } );
+				}
+				else if ( $field == 'email' ) {
+		
+					$html .= '<input type="email" name="email" value="' . $participant->{ 'email' } . '" size="' . $bigsize . '">';
+				}
+				else if ( $scheme[ $field ] == 'text' ) {
+					
+					$html .= '<textarea cols="' . $bigsize . '" rows="8" name="' . $field . '"></textarea>';
+				}
+				else if ( preg_match( '/char|string|text/i', $scheme[ $field ] ) ) {
+					
+					$html .= '<input type="text" value="' . $participant->{ $field } . '" name="' . $field . '" size="' . $bigsize . '">';
+				}
+				else if ( preg_match( '/bool|int\(1\)/i', $scheme[ $field ] ) ) {
+					
+					$html .= '<input type="checkbox"' . ( $participant->{ $field } ? ' checked' : '' ) . '" name="' . $field . '">';
+				}
+				else if ( preg_match( '/int\(/i', $scheme[ $field ] ) ) {
+					
+					$html .= '<input type="text" value="' . $participant->{ $field } . '" name="' . $field . '" size="' . $smallsize . '">';
+				}
+				else {
+					
+					return sprintf( __( '%sERROR: Missing format for field %s!%s', 'wp-tournament-registration' ), '<strong class="wptournreg-error">', "<kbd>$field</kbd>", '</strong>' );
+				}
+				
+				$html .= '</p>';
+			}					
 		}
 		
-	} */
+		/* check three boxes for deletion */
+		$count = 0;
+		$html .= '<fieldset class="wptournregedit-delete"><legend>' . __( 'Delete' ) . '</legend>';
+		
+		foreach( [ __( 'Delete', 'wp-tournament-registration' ), __( 'Are you sure?' ), __( 'Cannot restore!', 'wp-tournament-registration' )] as $label ) {
+			
+			$html .= '<input type="checkbox" name="delete' . ++$count . '">';
+			$html .= '<span class="wptournregedit-delcheck">' . $label . '</span>';
+		}
+		
+		$html .= '</fieldset><input type="hidden" name="action" value="wptournreg_edit_participant"><input type="submit" onclick="location.reload()"></form>';
+		
+	}
+	
+	$html .= '</div>';
+		
+	return $html;
 }
 
 add_shortcode( 'wptournregedit', 'wptournreg_edit' );
+	
+	/* Action hook of registration form */
+function wptournreg_edit_participant() {
+	
+	global $wpdb;
+	
+	echo '<html><head></head></html><body><p>';
+	
+	if ( array_key_exists( 'delete1', $_POST ) && array_key_exists( 'delete2',$_POST ) && array_key_exists( 'delete3', $_POST ) ) {
+
+		if ( $wpdb->delete( WP_TOURNREG_DATA_TABLE, array( 'id' => $_POST[ 'id' ] ) ) === 1 ) {
+		
+			echo __( 'Entry deleted.', 'wp-tournament-registration');
+			echo '</p><p>';
+			echo __( 'Please reload editor!', 'wp-tournament-registration');
+		}
+		else {
+			
+			echo sprintf( __( '%sERROR: Entry not deleted.%s', 'wp-tournament-registration' ), '<strong class="wptournreg-error">', '</strong>' );		
+		}
+	}
+	else {
+		
+		require_once WP_TOURNREG_DATABASE_PATH . 'scheme.php';
+	    $scheme = wptournreg_get_field_list();
+		
+		$values = [];
+		foreach( $scheme as $field => $type ) {
+			
+			
+			if ( preg_match( '/bool|int\(1\)/i', $type ) ) {
+				
+				$values[ $field ] = ( isset( $_POST[ $field ] ) ) ? 'TRUE' : 'FALSE';
+			}
+			else if ( isset( $_POST[ $field ] ) ) {
+				
+				$values[ $field ] = $_POST[ $field ];				
+			}
+		}
+		
+		print_r($_POST);
+		
+		if ( $wpdb->update( WP_TOURNREG_DATA_TABLE, $values, array( 'id' => $_POST[ 'id' ] ) ) === 1 ) {
+		
+			echo __( 'Entry updated.', 'wp-tournament-registration');
+			echo '</p><p>';
+			echo __( 'Please reload editor!', 'wp-tournament-registration');
+		}
+		else {
+			
+			echo sprintf( __( '%sERROR: Entry not updated.%s', 'wp-tournament-registration' ), '<strong class="wptournreg-error">', '</strong>' );		
+		}
+	}
+	
+	echo '</p></body>';
+}
+add_action( 'admin_post_wptournreg_edit_participant', 'wptournreg_edit_participant' );

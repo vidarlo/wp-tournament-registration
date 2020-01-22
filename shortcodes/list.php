@@ -90,7 +90,7 @@ function wptournreg_get_list( $atts = [] ) {
 				}
 				else if ( strcmp( $field, 'time' ) === 0 ) {
 					
-					$value = wp_date( get_option( 'date_format' ), $participant->{ $field } );
+					$value = wp_date( get_option( 'date_format' ), $participant->{ 'time' } );
 				}
 				else {
 					

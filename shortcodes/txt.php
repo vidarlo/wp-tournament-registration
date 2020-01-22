@@ -34,7 +34,7 @@ function wptournreg_format_txt( $atts = [], $content = null ) {
 	$linebreak = '<input type="hidden" name="linebreak" value="' . $a[ 'linebreak' ] . '">';
 	
 	/* set action URL */
-	$action = ' method="POST" action="' . esc_url( admin_url('admin-post.php') ) . '"';
+	$action = ' method="POST" action="' . WP_TOURNREG_ACTION_URL . '"';
 	
 	return "<form$id$class$css$action target='_blank'><p><strong>$content</strong></p>$tournament$format$linebreak" . '<input type="hidden" name="action" value="wptournreg_get_txt"><input type="submit"></form>';
 	

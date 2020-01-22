@@ -36,7 +36,7 @@ function wptournreg_get_fields( $atts = [] ) {
 	
 	/* sizes */
 	$bigsize = 50;
-	$smallsize = 50;
+	$smallsize = 12;
 	
 	if ( $field == 'id' || $field == 'time' ) {
 		

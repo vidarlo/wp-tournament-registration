@@ -23,7 +23,7 @@ function wp_tournreg_get_form( $atts = [], $content = null ) {
 	}
 	
 	/* set action URL */
-	$action = ' method="POST" action="' . esc_url( admin_url('admin-post.php') ) . '"';
+	$action = ' method="POST" action="' . WP_TOURNREG_ACTION_URL . '"';
 	
 	/* add custom CSS */
 	$css = ( empty ( $a{ 'css' } ) ) ? '' : ' style="' . $a{ 'css' } . '"';
