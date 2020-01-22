@@ -22,11 +22,11 @@ function wptournreg_insert_data() {
 			}
 			else if ( preg_match( '/bool|int\(1\)/i', $scheme[ $field ] ) ) {
 				
-				$prepared = 'TRUE';
+				$prepared = 1;
 			}
 			else if ( preg_match( '/int\(/i', $scheme[ $field ] ) ) {
 				
-				$prepared = ( is_int( $value ) ) ? $value : 'NULL'
+				$prepared = ( is_int( $value ) ) ? $value : 'FALSE'
 				;
 			}
 			else {

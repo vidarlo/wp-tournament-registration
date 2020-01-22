@@ -149,7 +149,7 @@ function wptournreg_edit_participant() {
 			
 			if ( preg_match( '/bool|int\(1\)/i', $type ) ) {
 				
-				$values[ $field ] = ( isset( $_POST[ $field ] ) ) ? 'TRUE' : 'FALSE';
+				$values[ $field ] = ( isset( $_POST[ $field ] ) ) ? 1 : 0;
 			}
 			else if ( isset( $_POST[ $field ] ) ) {
 				

@@ -18,7 +18,7 @@ function wptournreg_install() {
 		lastname tinytext DEFAULT '' NOT NULL,
 		firstname tinytext DEFAULT '' NOT NULL,
 		email tinytext NOT NULL,
-		phone1 varchar(32) DEFAULT '' NOT NULL,
+		phone1 varchar(64) DEFAULT '' NOT NULL,
 		phone2 varchar(32) DEFAULT '' NOT NULL,
 		rating1 mediumint(9) DEFAULT NULL,
 		rating2 mediumint(9) DEFAULT NULL,
@@ -31,6 +31,11 @@ function wptournreg_install() {
 		postcode varchar(12) NOT NULL,
 		city varchar(32) NOT NULL,
 		address varchar(128) NOT NULL,
+		custom1 tinytext DEFAULT '' NOT NULL,
+		custom2 tinytext DEFAULT '' NOT NULL,
+		custom3 tinytext DEFAULT '' NOT NULL,
+		custom4 tinytext DEFAULT '' NOT NULL,
+		custom5 tinytext DEFAULT '' NOT NULL,
 		PRIMARY KEY  (id)
 	) $charset_collate;";
 
