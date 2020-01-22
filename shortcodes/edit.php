@@ -37,14 +37,14 @@ function wptournreg_edit( $atts = [] ) {
 	ksort( $names );
 	
 	/* names as HTML selection list */
-	$html = '<select name="wptournregedit-select">';
+	$html = '<form><select class="wptournregedit-select">';
 	
 	foreach( $names as $participant => $id ) {
 		
 		$html .= '<option value="#wptournregedit-participant' . $id . '">' . $participant . '</option>';
 	}
 	
-	$html .= '</select>';
+	$html .= '</select></form>';
 	
 	/* create forms */
 	

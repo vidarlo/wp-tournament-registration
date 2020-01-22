@@ -2,10 +2,12 @@ jQuery(function() {
   jQuery(".wptournreg-list table").tablesorter({widgets: ["zebra"],});
 });
 
-jQuery( '.wptournregedit-select' ).on( 'select', function() {
+jQuery( '.wptournregedit-select' ).on( 'change', function() {
+	
+	console.log('CHANGE');
 	
 	let updateform = jQuery( this ).val();
-	jQuery( '.wptournregedit-select' ).css( 'display', 'none' );
+	jQuery( '.wptournregedit-participant' ).css( 'display', 'none' );
 	jQuery( updateform ).css( 'display', 'block' );
 	
-}).first().trigger( 'select' );
+}).first().trigger( 'change' );
