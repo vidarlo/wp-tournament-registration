@@ -64,6 +64,8 @@ function wptournreg_get_txt() {
 		foreach( $participant as $field => $value ) {
 			
 			$row = str_replace( "%$field%", $value, $row );
+			$row = str_replace( '\"', '"', $row );
+			$row = str_replace( "\'", "'", $row );
 		}
 		
 		$formatted[] = $row;	
