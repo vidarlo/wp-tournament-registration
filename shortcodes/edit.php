@@ -28,17 +28,25 @@ function wptournreg_edit( $atts = [] ) {
 	
 	$fields = preg_split( '/\s*,\s*/', $a[ 'display_fields' ]);
 	
+	/* create name list */
+	$names = [];
 	foreach( $result as $participant ) {
+				
+		$names[ $participant->{ 'lastname' } . ', ' . $participant->{ 'firstname' }] = $participant->{ 'id' };
 	}
+	ksort( $names );
 	
-	foreach( $result as $participant ) {
+	
+	
+	
+/*	foreach( $result as $participant ) {
 		
 		foreach( $fields as $field ) {
 			
 			
 		}
 		
-	}
+	} */
 }
 
 add_shortcode( 'wptournregedit', 'wptournreg_edit' );

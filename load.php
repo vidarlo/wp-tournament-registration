@@ -30,7 +30,6 @@ global $wpdb;
 define("WP_TOURNREG_DATA_TABLE", $wpdb->prefix . 'wptournreg_participants' );
 
 /* ACTIVATION */
-
 require_once WP_TOURNREG_INSTALL_PATH . 'install.php';
 
 $wptournreg_db_version = 1;
@@ -39,7 +38,7 @@ add_option( 'wptournreg_db_version', $wptournreg_db_version );
 register_activation_hook( __FILE__, 'wptournreg_install' );
 
 /* SHORTCODES */
-
+require_once WP_TOURNREG_SHORTCODE_PATH . 'edit.php';
 require_once WP_TOURNREG_SHORTCODE_PATH . 'field.php';
 require_once WP_TOURNREG_SHORTCODE_PATH . 'form.php';
 require_once WP_TOURNREG_SHORTCODE_PATH . 'list.php';
