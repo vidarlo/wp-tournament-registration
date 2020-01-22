@@ -157,7 +157,6 @@ function wptournreg_edit_participant() {
 			}
 		}
 		
-		print_r($_POST);
 		
 		if ( $wpdb->update( WP_TOURNREG_DATA_TABLE, $values, array( 'id' => $_POST[ 'id' ] ) ) === 1 ) {
 		
