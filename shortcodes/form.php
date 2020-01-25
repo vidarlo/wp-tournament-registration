@@ -33,19 +33,28 @@ function wp_tournreg_get_form( $atts = [], $content = null ) {
 	$class = ' class="wptournreg-form' . ( empty ( $a{ 'class' } ) ? '' :  ' ' . $a{ 'class' } ) . '"';
 	$id = ( empty ( $a{ 'css_id' } ) ) ? '' : ' id="' . $a{ 'css_id' } . '"';
 	
-	return "<form$id$class$css$action target='_blank'>$tournament" . do_shortcode( $content, false ) . '<input type="hidden" name="action" value="wptournreg_add_participant"><input type="submit" onmouseup="location.reload()"><input type="reset"></form>';
+	return "<form$id$class$css$action>$tournament" . do_shortcode( $content, false ) . '<input type="hidden" name="action" value="wptournreg_add_participant"><input type="submit"><input type="reset"></form>';
 }
 
 add_shortcode( 'wptournregform', 'wp_tournreg_get_form' );
 
 /* Action hook of registration form */
-function wptournreg_add_participant() {
+function wptournreg_add_participant() {	
 	
 	require_once WP_TOURNREG_DATABASE_PATH.'insert.php';
-	wptournreg_insert_data();
-
+	
 	echo '<html><head></head></html><body>';
-	echo sprintf( __( '%sThank you for your registration.%s', 'wp-tournament-registration'), '<strong class="wptournreg-thanks">', '</strong>' );
-	echo '</body>';
+	
+	if ( wptournreg_insert_data() === 1 ) {
+		
+		echo sprintf( __( '%sThank you for your registration.%s', 'wp-tournament-registration'), '<strong class="wptournreg-thanks">', '</strong>' );
+	}
+	else {
+		
+		echo sprintf( __( '%sRegistration failed!%s', 'wp-tournament-registration'), '<strong class="wptournreg-error">', '</strong>' );
+	}
+	echo '</p><p><button onclick="window.history.back()">';
+	echo __( 'Back', 'wp-tournament-registration');
+	echo '</button></p></body>';
 }
-add_action( 'admin_post_wptournreg_add_participant', 'wptournreg_add_participant' );
+add_action( 'admin_post_nopriv_wptournreg_add_participant', 'wptournreg_add_participant' );

@@ -55,7 +55,7 @@ function wptournreg_edit( $atts = [] ) {
 	
 	foreach( $result as $participant ) {
 		
-		$html .= '<form id="wptournregedit-participant' . $participant->{ 'id' } . '" class="wptournregedit-participant" method="POST" action="' . WP_TOURNREG_ACTION_URL . '" target=_blank"><input type="hidden" name="id" value="' . $participant->{ 'id' } . '">';
+		$html .= '<form id="wptournregedit-participant' . $participant->{ 'id' } . '" class="wptournregedit-participant" method="POST" action="' . WP_TOURNREG_ACTION_URL . '"><input type="hidden" name="id" value="' . $participant->{ 'id' } . '">';
 		
 		foreach( $fields as $field ) {
 			
@@ -114,7 +114,7 @@ function wptournreg_edit( $atts = [] ) {
 			$html .= '<span class="wptournregedit-delcheck">' . $label . '</span>';
 		}
 		
-		$html .= '</fieldset><input type="hidden" name="action" value="wptournreg_edit_participant"><input type="submit" onclick="location.reload()"></form>';
+		$html .= '</fieldset><input type="hidden" name="action" value="wptournreg_edit_participant"><input type="submit"></form>';
 		
 	}
 	
@@ -126,19 +126,17 @@ function wptournreg_edit( $atts = [] ) {
 add_shortcode( 'wptournregedit', 'wptournreg_edit' );
 	
 /* Action hook of registration form */
-function wptournreg_edit_participant() {
+function wptournreg_edit_participant() { error_log('Hallo Welt!');
+	
+	global $wpdb;
 	
 	echo '<html><head></head></html><body><p>';
 	
 	if ( array_key_exists( 'delete1', $_POST ) && array_key_exists( 'delete2',$_POST ) && array_key_exists( 'delete3', $_POST ) ) {
 		
-		global $wpdb;
-
 		if ( $wpdb->delete( WP_TOURNREG_DATA_TABLE, array( 'id' => $_POST[ 'id' ] ) ) === 1 ) {
 		
 			echo __( 'Entry deleted.', 'wp-tournament-registration');
-			echo '</p><p>';
-			echo __( 'Please reload editor!', 'wp-tournament-registration');
 		}
 		else {
 			
@@ -152,15 +150,14 @@ function wptournreg_edit_participant() {
 		if ( wptournreg_update_data() === 1 ) {
 		
 			echo __( 'Entry updated.', 'wp-tournament-registration');
-			echo '</p><p>';
-			echo __( 'Please reload editor!', 'wp-tournament-registration');
 		}
 		else {
 			
 			echo sprintf( __( '%sERROR: Entry not updated.%s', 'wp-tournament-registration' ), '<strong class="wptournreg-error">', '</strong>' );		
 		}
 	}
-	
-	echo '</p></body>';
+		echo '</p><p><button onclick="window.history.back()">';
+		echo __( 'Back', 'wp-tournament-registration');
+		echo '</button></p></body>';
 }
-add_action( 'admin_post_wptournreg_edit_participant', 'wptournreg_edit_participant' );
+add_action( 'admin_post_nopriv_wptournreg_edit_participant', 'wptournreg_edit_participant' );
