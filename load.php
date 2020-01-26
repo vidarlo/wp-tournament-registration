@@ -13,12 +13,14 @@ Description: Simple tournament registration form
 */
 
 /* VERSIONS */
-define( "WP_TOURNREG_MAIN_VER", '1.0.0' );
+define( "WP_TOURNREG_DB_VER", 1 );
+define( "WP_TOURNREG_PLUGIN_VER", '1.0.0' );
 define( "WP_TOURNREG_TBSORT_VER", '2.32.2' );
 
 /* PATHES */
 define( "WP_TOURNREG_ASSETS_PATH", plugin_dir_path( __FILE__ ) . 'assets' . DIRECTORY_SEPARATOR );
 define( "WP_TOURNREG_DATABASE_PATH", plugin_dir_path( __FILE__ ) . 'db' . DIRECTORY_SEPARATOR );
+define( "WP_TOURNREG_HTML_PATH", plugin_dir_path( __FILE__ ) . 'html' . DIRECTORY_SEPARATOR );
 define( "WP_TOURNREG_HTTP_PATH", plugin_dir_path( __FILE__ ) . 'http' . DIRECTORY_SEPARATOR );
 define( "WP_TOURNREG_INSTALL_PATH", plugin_dir_path( __FILE__ ) . 'install' . DIRECTORY_SEPARATOR );
 define( "WP_TOURNREG_LOCALIZATION_PATH", plugin_dir_path( __FILE__ ) . 'languages' . DIRECTORY_SEPARATOR );

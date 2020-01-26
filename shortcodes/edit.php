@@ -157,8 +157,8 @@ function wptournreg_edit_participant() { error_log('Hallo Welt!');
 		}
 	}
 
-	echo '</p><p><button onclick="window.history.back()">';
-	echo __( 'Back', 'wp-tournament-registration');
-	echo '</button></p></body>';
+	echo '</p>';
+	require_once WP_TOURNREG_HTML_PATH . 'backbutton.php';
+	echo '</body>';
 }
 add_action( 'admin_post_nopriv_wptournreg_edit_participant', 'wptournreg_edit_participant' );

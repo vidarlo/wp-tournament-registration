@@ -33,7 +33,9 @@ function wp_tournreg_get_form( $atts = [], $content = null ) {
 	$class = ' class="wptournreg-form' . ( empty ( $a{ 'class' } ) ? '' :  ' ' . $a{ 'class' } ) . '"';
 	$id = ( empty ( $a{ 'css_id' } ) ) ? '' : ' id="' . $a{ 'css_id' } . '"';
 	
-	return "<form$id$class$css$action>$tournament" . do_shortcode( $content, false ) . '<input type="hidden" name="action" value="wptournreg_add_participant"><input type="submit"><input type="reset"></form>';
+	require_once WP_TOURNREG_HTML_PATH . 'backlink.php';
+	
+	return "<form$id$class$css$action>$tournament" . do_shortcode( $content, false ) . '<input type="hidden" name="action" value="wptournreg_add_participant"><input type="submit"><input type="reset"></form>' . get_backlink( 'form' );
 }
 
 add_shortcode( 'wptournregform', 'wp_tournreg_get_form' );
@@ -53,8 +55,8 @@ function wptournreg_add_participant() {
 		
 		echo sprintf( __( '%sRegistration failed!%s', 'wp-tournament-registration'), '<strong class="wptournreg-error">', '</strong>' );
 	}
-	echo '</p><p><button onclick="window.history.back()">';
-	echo __( 'Back', 'wp-tournament-registration');
-	echo '</button></p></body>';
+	echo '</p>';
+	require_once WP_TOURNREG_HTML_PATH . 'backbutton.php';
+	echo '</body>';
 }
 add_action( 'admin_post_nopriv_wptournreg_add_participant', 'wptournreg_add_participant' );

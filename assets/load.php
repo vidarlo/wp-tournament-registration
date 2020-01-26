@@ -5,7 +5,7 @@ function wptournreg_load_assets() {
 		'wptournreg', // $handle
 		WP_TOURNREG_JS_URL, // $url
 		array( 'jquery', 'wptournregtablesorter' ), // $deps
-		WP_TOURNREG_MAIN_VER, // $ver
+		WP_TOURNREG_PLUGIN_VER, // $ver
 		true // $in_footer
 	);
 		
@@ -13,7 +13,7 @@ function wptournreg_load_assets() {
 		'wptournreg', // $handle
 		WP_TOURNREG_CSS_URL, // $url
 		array( 'wptournregtablesorter' ), // $deps
-		WP_TOURNREG_MAIN_VER, // $ver
+		WP_TOURNREG_PLUGIN_VER, // $ver
 		false // $in_footer
 	);
 }

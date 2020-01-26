@@ -10,4 +10,4 @@ jQuery( '.wptournregedit-select' ).on( 'change', function() {
 	jQuery( '.wptournregedit-participant' ).css( 'display', 'none' );
 	jQuery( updateform ).css( 'display', 'block' );
 	
-}).first().trigger( 'change' );
+}).trigger( 'change' );
