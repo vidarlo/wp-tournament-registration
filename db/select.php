@@ -7,5 +7,6 @@ function wptournreg_select_tournament( $tournament_id ) {
 	
 	global $wpdb;
 
-	return $wpdb->get_results('SELECT * FROM ' . WP_TOURNREG_DATA_TABLE . " WHERE tournament_id = '" . $tournament_id . "';" );
+	$tourn = $wpdb->_real_escape( $tournament_id );
+	return $wpdb->get_results('SELECT * FROM ' . WP_TOURNREG_DATA_TABLE . " WHERE tournament_id = '" . $tourn . "';" );
 }

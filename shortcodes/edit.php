@@ -156,8 +156,9 @@ function wptournreg_edit_participant() { error_log('Hallo Welt!');
 			echo sprintf( __( '%sERROR: Entry not updated.%s', 'wp-tournament-registration' ), '<strong class="wptournreg-error">', '</strong>' );		
 		}
 	}
-		echo '</p><p><button onclick="window.history.back()">';
-		echo __( 'Back', 'wp-tournament-registration');
-		echo '</button></p></body>';
+
+	echo '</p><p><button onclick="window.history.back()">';
+	echo __( 'Back', 'wp-tournament-registration');
+	echo '</button></p></body>';
 }
 add_action( 'admin_post_nopriv_wptournreg_edit_participant', 'wptournreg_edit_participant' );
