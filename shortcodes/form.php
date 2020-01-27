@@ -1,7 +1,7 @@
 <?php
 
 /* shortcode for registration form */
-function wp_tournreg_get_form( $atts = [], $content = null ) {
+function wptournreg_get_form( $atts = [], $content = null ) {
 		
 	// normalize attribute keys, lowercase
     $atts = array_change_key_case((array)$atts, CASE_LOWER);
@@ -35,10 +35,10 @@ function wp_tournreg_get_form( $atts = [], $content = null ) {
 	
 	require_once WP_TOURNREG_HTML_PATH . 'backlink.php';
 	
-	return "<form$id$class$css$action>$tournament" . do_shortcode( $content, false ) . '<input type="hidden" name="action" value="wptournreg_add_participant"><input type="submit"><input type="reset"></form>' . get_backlink( 'form' );
+	return "<form$id$class$css$action>$tournament" . do_shortcode( $content, false ) . '<input type="hidden" name="action" value="wptournreg_add_participant"><input type="submit"><input type="reset"></form>' . wptournreg_get_backlink( 'form' );
 }
 
-add_shortcode( 'wptournregform', 'wp_tournreg_get_form' );
+add_shortcode( 'wptournregform', 'wptournreg_get_form' );
 
 /* Action hook of registration form */
 function wptournreg_add_participant() {	

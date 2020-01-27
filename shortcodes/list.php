@@ -116,7 +116,7 @@ function wptournreg_get_list( $atts = [] ) {
 	$html .= '</tbody></table></figure>';
 	
 	require_once WP_TOURNREG_HTML_PATH . 'backlink.php';
-	$html .= get_backlink( 'list' );
+	$html .= wptournreg_get_backlink( 'list' );
 	
 	return $html;
 	
