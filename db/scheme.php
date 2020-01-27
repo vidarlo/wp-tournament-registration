@@ -1,5 +1,7 @@
 <?php
 
+defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
+
 /* returns an associative array COLUMN_NAME => COLUMN_TYPE of the table scheme (no params) */
 function wptournreg_get_field_list() {
 	

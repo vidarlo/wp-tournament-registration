@@ -1,5 +1,7 @@
 <?php
 
+defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
+
 /* stores the form data 
  * param1 = tournament_id
  */

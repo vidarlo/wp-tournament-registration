@@ -1,5 +1,7 @@
 <?php
 
+defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
+
 /* shortcode for registration form */
 function wptournreg_get_form( $atts = [], $content = null ) {
 		

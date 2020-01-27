@@ -1,5 +1,7 @@
 <?php
 
+defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
+
 /* returns a customizable txt file */
 function wptournreg_export( $atts = [], $content = null ) {
 	

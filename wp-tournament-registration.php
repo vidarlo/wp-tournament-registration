@@ -17,6 +17,8 @@ define( "WP_TOURNREG_DB_VER", 1 );
 define( "WP_TOURNREG_PLUGIN_VER", '1.0.0' );
 define( "WP_TOURNREG_TBSORT_VER", '2.32.2' );
 
+$wptournreg_db_version = WP_TOURNREG_DB_VER;
+
 /* PATHES */
 define( "WP_TOURNREG_ASSETS_PATH", plugin_dir_path( __FILE__ ) . 'assets' . DIRECTORY_SEPARATOR );
 define( "WP_TOURNREG_DATABASE_PATH", plugin_dir_path( __FILE__ ) . 'db' . DIRECTORY_SEPARATOR );
@@ -39,8 +41,6 @@ define("WP_TOURNREG_DATA_TABLE", $wpdb->prefix . 'wptournreg_participants' );
 
 /* ACTIVATION */
 require_once WP_TOURNREG_INSTALL_PATH . 'install.php';
-
-$wptournreg_db_version = 1;
 
 /* NO CACHE */
 require_once WP_TOURNREG_HTTP_PATH.'cache.php';

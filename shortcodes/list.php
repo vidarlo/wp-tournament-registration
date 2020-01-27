@@ -1,5 +1,7 @@
 <?php
 
+defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
+
 /* stores the form data (no params) */
 function wptournreg_get_list( $atts = [] ) {
 	

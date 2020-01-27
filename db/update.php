@@ -1,5 +1,7 @@
 <?php
 
+defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
+
 /* updates from editor (param1 = id) */
 function wptournreg_update_data( ) {
 	

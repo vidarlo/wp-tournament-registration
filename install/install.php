@@ -1,5 +1,7 @@
 <?php
 
+defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
+
 /* https://codex.wordpress.org/Creating_Tables_with_Plugins */
 
 

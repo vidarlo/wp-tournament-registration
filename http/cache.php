@@ -1,5 +1,7 @@
 <?php
 
+defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
+
 /* no caching of rapidly changing documents */
 function wptournreg_supress_caching( $headers ) {
 	

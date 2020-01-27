@@ -1,5 +1,7 @@
 <?php
 
+defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
+
 /* edit entries */
 function wptournreg_edit( $atts = [] ) {
 	

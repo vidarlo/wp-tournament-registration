@@ -1,5 +1,7 @@
 <?php
 
+defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
+
 function wptournreg_load_tablesort() {
 	
 	wp_register_script(
