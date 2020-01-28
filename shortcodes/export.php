@@ -12,9 +12,10 @@ function wptournreg_export( $atts = [], $content = null ) {
 		'class' => null,
 		'css' => null,
 		'css_id' => null,
+		'fields_set' => null,
+		'file_name' => 'wptournreg.txt',
 		'format' => null,
 		'linebreak' => '',
-		'fields_set' => null,
 		'tournament_id' => null,
 	), $atts );
 	
@@ -39,6 +40,7 @@ function wptournreg_export( $atts = [], $content = null ) {
 	$format = "<input type='hidden' name='format' value='" . $a[ 'format' ] . "'>";
 	$linebreak = '<input type="hidden" name="linebreak" value="' . $a[ 'linebreak' ] . '">';
 	$fields_set = "<input type='hidden' name='fields_set' value='" . $a[ 'fields_set' ] . "'>";
+	$filename= '<input type="hidden" name="filename" value="' . $a[ 'filename' ] . '">';
 	
 	/* set action URL */
 	$action = ' method="POST" action="' . WP_TOURNREG_ACTION_URL . '"';
@@ -93,7 +95,7 @@ function wptournreg_get_txt() {
 	}
 	
 	header('Content-Type: text/plain');
-	header('Content-Disposition: attachment; filename="wptournreg.txt"');
+	header('Content-Disposition: attachment; filename="' . $_POST[ 'filename' ] . '"');
 	
 	echo implode( $linebreak, $formatted );
 }

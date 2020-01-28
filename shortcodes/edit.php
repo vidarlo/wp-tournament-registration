@@ -110,10 +110,10 @@ function wptournreg_edit( $atts = [] ) {
 		$count = 0;
 		$html .= '<fieldset class="wptournregedit-delete"><legend>' . __( 'Delete' ) . '</legend>';
 		
-		foreach( [ __( 'Delete', 'wp-tournament-registration' ), __( 'Are you sure?' ), __( 'Cannot restore!', 'wp-tournament-registration' )] as $label ) {
+		foreach( [ 'Delete', 'Are you sure?', 'Cannot restore!' ] as $label ) {
 			
 			$html .= '<input type="checkbox" name="delete' . ++$count . '">';
-			$html .= '<span class="wptournregedit-delcheck">' . $label . '</span>';
+			$html .= '<span class="wptournregedit-delcheck">' . __( $label, 'wp-tournament-registration' ) . '</span>';
 		}
 		
 		$html .= '</fieldset><input type="hidden" name="action" value="wptournreg_edit_participant"><input type="submit"></form>';
@@ -138,11 +138,11 @@ function wptournreg_edit_participant() { error_log('Hallo Welt!');
 		
 		if ( $wpdb->delete( WP_TOURNREG_DATA_TABLE, array( 'id' => $_POST[ 'id' ] ) ) === 1 ) {
 		
-			echo __( 'Entry deleted.', 'wp-tournament-registration');
+			_e( 'Entry deleted.', 'wp-tournament-registration');
 		}
 		else {
 			
-			echo sprintf( __( '%sERROR: Entry not deleted.%s', 'wp-tournament-registration' ), '<strong class="wptournreg-error">', '</strong>' );		
+			printf( __( '%sERROR: Entry not deleted.%s', 'wp-tournament-registration' ), '<strong class="wptournreg-error">', '</strong>' );		
 		}
 	}
 	else {
@@ -151,11 +151,11 @@ function wptournreg_edit_participant() { error_log('Hallo Welt!');
 		
 		if ( wptournreg_update_data() === 1 ) {
 		
-			echo __( 'Entry updated.', 'wp-tournament-registration');
+			_e( 'Entry updated.', 'wp-tournament-registration');
 		}
 		else {
 			
-			echo sprintf( __( '%sERROR: Entry not updated.%s', 'wp-tournament-registration' ), '<strong class="wptournreg-error">', '</strong>' );		
+			printf( __( '%sERROR: Entry not updated.%s', 'wp-tournament-registration' ), '<strong class="wptournreg-error">', '</strong>' );		
 		}
 	}
 
@@ -164,3 +164,4 @@ function wptournreg_edit_participant() { error_log('Hallo Welt!');
 	echo '</body>';
 }
 add_action( 'admin_post_nopriv_wptournreg_edit_participant', 'wptournreg_edit_participant' );
+add_action( 'admin_post_wptournreg_edit_participant', 'wptournreg_edit_participant' );

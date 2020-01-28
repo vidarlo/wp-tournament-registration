@@ -5,10 +5,10 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 /* also read https://codex.wordpress.org/Writing_a_Plugin */
  
 /*
- 
-Plugin Name: WP Tournament Registration
- 
-Description: Simple tournament registration form
+* Plugin Name: WP Tournament Registration
+* Description: Simple tournament registration form
+* Text Domain: wp-tournament-registration
+* Domain Path: /languages
  
 */
 
@@ -20,13 +20,14 @@ define( "WP_TOURNREG_TBSORT_VER", '2.32.2' );
 $wptournreg_db_version = WP_TOURNREG_DB_VER;
 
 /* PATHES */
-define( "WP_TOURNREG_ASSETS_PATH", plugin_dir_path( __FILE__ ) . 'assets' . DIRECTORY_SEPARATOR );
-define( "WP_TOURNREG_DATABASE_PATH", plugin_dir_path( __FILE__ ) . 'db' . DIRECTORY_SEPARATOR );
-define( "WP_TOURNREG_HTML_PATH", plugin_dir_path( __FILE__ ) . 'html' . DIRECTORY_SEPARATOR );
-define( "WP_TOURNREG_HTTP_PATH", plugin_dir_path( __FILE__ ) . 'http' . DIRECTORY_SEPARATOR );
-define( "WP_TOURNREG_INSTALL_PATH", plugin_dir_path( __FILE__ ) . 'install' . DIRECTORY_SEPARATOR );
-define( "WP_TOURNREG_LOCALIZATION_PATH", plugin_dir_path( __FILE__ ) . 'languages' . DIRECTORY_SEPARATOR );
-define( "WP_TOURNREG_SHORTCODE_PATH", plugin_dir_path( __FILE__ ) . 'shortcodes' . DIRECTORY_SEPARATOR );
+define( "WP_TOURNREG_PLUGIN_PATH", plugin_dir_path( __FILE__ ) );
+define( "WP_TOURNREG_ASSETS_PATH", WP_TOURNREG_PLUGIN_PATH . 'assets' . DIRECTORY_SEPARATOR );
+define( "WP_TOURNREG_DATABASE_PATH", WP_TOURNREG_PLUGIN_PATH . 'db' . DIRECTORY_SEPARATOR );
+define( "WP_TOURNREG_HTML_PATH", WP_TOURNREG_PLUGIN_PATH . 'html' . DIRECTORY_SEPARATOR );
+define( "WP_TOURNREG_HTTP_PATH", WP_TOURNREG_PLUGIN_PATH . 'http' . DIRECTORY_SEPARATOR );
+define( "WP_TOURNREG_INSTALL_PATH", WP_TOURNREG_PLUGIN_PATH . 'install' . DIRECTORY_SEPARATOR );
+define( "WP_TOURNREG_LOCALIZATION_PATH", WP_TOURNREG_PLUGIN_PATH . 'languages' . DIRECTORY_SEPARATOR );
+define( "WP_TOURNREG_SHORTCODE_PATH", WP_TOURNREG_PLUGIN_PATH . 'shortcodes' . DIRECTORY_SEPARATOR );
 
 /* URLs */
 define( "WP_TOURNREG_ACTION_URL", esc_url( admin_url('admin-post.php') ) );
@@ -41,6 +42,13 @@ define("WP_TOURNREG_DATA_TABLE", $wpdb->prefix . 'wptournreg_participants' );
 
 /* ACTIVATION */
 require_once WP_TOURNREG_INSTALL_PATH . 'install.php';
+
+/* LOCALIZATION */
+function wptournreg_load_textdomain() {
+	
+	load_plugin_textdomain( 'wp-tournament-registration', false, basename( dirname( __FILE__ ) ) . '/languages/' );
+}
+add_action( 'init', 'wptournreg_load_textdomain' );
 
 /* NO CACHE */
 require_once WP_TOURNREG_HTTP_PATH.'cache.php';

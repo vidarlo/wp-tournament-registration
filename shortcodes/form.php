@@ -51,14 +51,15 @@ function wptournreg_add_participant() {
 	
 	if ( wptournreg_insert_data() === 1 ) {
 		
-		echo sprintf( __( '%sThank you for your registration.%s', 'wp-tournament-registration'), '<strong class="wptournreg-thanks">', '</strong>' );
+		printf( __( '%sThank you for your registration.%s', 'wp-tournament-registration'), '<strong class="wptournreg-thanks">', '</strong>' );
 	}
 	else {
 		
-		echo sprintf( __( '%sRegistration failed!%s', 'wp-tournament-registration'), '<strong class="wptournreg-error">', '</strong>' );
+		printf( __( '%sRegistration failed!%s', 'wp-tournament-registration'), '<strong class="wptournreg-error">', '</strong>' );
 	}
 	echo '</p>';
 	require_once WP_TOURNREG_HTML_PATH . 'backbutton.php';
 	echo '</body>';
 }
 add_action( 'admin_post_nopriv_wptournreg_add_participant', 'wptournreg_add_participant' );
+add_action( 'admin_post_wptournreg_add_participant', 'wptournreg_add_participant' );
