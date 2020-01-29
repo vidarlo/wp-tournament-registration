@@ -128,11 +128,11 @@ function wptournreg_edit( $atts = [] ) {
 add_shortcode( 'wptournregedit', 'wptournreg_edit' );
 	
 /* Action hook of registration form */
-function wptournreg_edit_participant() { error_log('Hallo Welt!');
+function wptournreg_edit_participant() {
 	
 	global $wpdb;
 	
-	echo '<html><head></head></html><body><p>';
+	echo '<html><head></head></html><body><header style="min-height:30px"></header><p>';
 	
 	if ( array_key_exists( 'delete1', $_POST ) && array_key_exists( 'delete2',$_POST ) && array_key_exists( 'delete3', $_POST ) ) {
 		

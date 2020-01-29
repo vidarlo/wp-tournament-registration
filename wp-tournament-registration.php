@@ -17,8 +17,6 @@ define( "WP_TOURNREG_DB_VER", 1 );
 define( "WP_TOURNREG_PLUGIN_VER", '1.0.0' );
 define( "WP_TOURNREG_TBSORT_VER", '2.32.2' );
 
-$wptournreg_db_version = WP_TOURNREG_DB_VER;
-
 /* PATHES */
 define( "WP_TOURNREG_PLUGIN_PATH", plugin_dir_path( __FILE__ ) );
 define( "WP_TOURNREG_ASSETS_PATH", WP_TOURNREG_PLUGIN_PATH . 'assets' . DIRECTORY_SEPARATOR );
@@ -53,7 +51,7 @@ add_action( 'init', 'wptournreg_load_textdomain' );
 /* NO CACHE */
 require_once WP_TOURNREG_HTTP_PATH.'cache.php';
 
-add_option( 'wptournreg_db_version', $wptournreg_db_version );
+add_option( 'wptournreg_db_version', WP_TOURNREG_DB_VER );
 register_activation_hook( __FILE__, 'wptournreg_install' );
 
 /* SHORTCODES */

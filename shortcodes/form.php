@@ -47,7 +47,7 @@ function wptournreg_add_participant() {
 	
 	require_once WP_TOURNREG_DATABASE_PATH.'insert.php';
 	
-	echo '<html><head></head></html><body>';
+	echo '<html><head></head><body><header style="min-height:30px"></header>';
 	
 	if ( wptournreg_insert_data() === 1 ) {
 		
@@ -59,7 +59,7 @@ function wptournreg_add_participant() {
 	}
 	echo '</p>';
 	require_once WP_TOURNREG_HTML_PATH . 'backbutton.php';
-	echo '</body>';
+	echo '</body></html>';
 }
 add_action( 'admin_post_nopriv_wptournreg_add_participant', 'wptournreg_add_participant' );
 add_action( 'admin_post_wptournreg_add_participant', 'wptournreg_add_participant' );

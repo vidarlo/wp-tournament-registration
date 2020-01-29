@@ -9,8 +9,13 @@
 .wptournregedit-delcheck {
 	padding: 0 15px 0 3px;
 }
-.wptournreg-form label {
+.wptournreg-form label,
+.wptournregedit-participant label {
 	vertical-align: top;
+	margin: 3px;
+}
+.wptournreg-form legend,
+.wptournregedit-participant legend {
 	margin: 3px;
 }
 .wptournreg-form fieldset {

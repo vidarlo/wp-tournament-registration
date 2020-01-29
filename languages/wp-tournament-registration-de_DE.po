@@ -62,7 +62,7 @@ msgstr "%sFEHLER: Es gibt kein Feld %s!%s"
 
 # shortcodes/form.php
 msgid "%sThank you for your registration.%s"
-msgstr "%sDanke für Ihre Registrierung.%s"
+msgstr "%sDanke für Ihre Anmeldung.%s"
 
 # shortcodes/form.php
 msgid "%sRegistration failed!%s"
