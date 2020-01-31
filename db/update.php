@@ -2,11 +2,12 @@
 
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
-/* updates from editor (param1 = id) */
+/* updates from editor */
 function wptournreg_update_data( ) {
 	
 	global $wpdb;
 
+	require_once WP_TOURNREG_DATABASE_PATH . 'escape.php';
 	require_once WP_TOURNREG_DATABASE_PATH . 'scheme.php';
 	$scheme = wptournreg_get_field_list();
 		
@@ -21,11 +22,11 @@ function wptournreg_update_data( ) {
 		}
 		else if ( preg_match( '/int\(/i', $type ) ) {
 			
-			$values[ $field ] = ( !empty( $_POST[ $field ] ) ) ? $_POST[ $field ] : 'NULL';
+			$values[ $field ] = ( !empty( $_POST[ $field ] ) ) ? wptournreg_escape( $_POST[ $field ] ) : 'NULL';
 		}
 		else if ( array_key_exists( $field, $_POST ) ) {
 			
-			$values[ $field ] =  "'" . $wpdb->_real_escape( $_POST[ $field ] ) . "'";				
+			$values[ $field ] =  "'" . wptournreg_escape( $_POST[ $field ] ) . "'";				
 		}
 	}
 	
@@ -35,5 +36,5 @@ function wptournreg_update_data( ) {
 	}
 	
 	/* $wpdb->update and friends canm't set NULL values */
-	return $wpdb->query( 'UPDATE ' . WP_TOURNREG_DATA_TABLE . ' SET ' . implode( ', ', $update ) . ' WHERE id = ' . $_POST[ 'id' ] . ';' );
+	return $wpdb->query( 'UPDATE ' . WP_TOURNREG_DATA_TABLE . ' SET ' . implode( ', ', $update ) . ' WHERE id = ' . wptournreg_escape( $_POST[ 'id' ] ) . ';' );
 }

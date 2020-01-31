@@ -5,6 +5,7 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 /* stores the form data (no params) */
 function wptournreg_insert_data() {
 	
+	require_once WP_TOURNREG_DATABASE_PATH . 'escape.php';
 	require_once WP_TOURNREG_DATABASE_PATH . 'scheme.php';
 	$scheme = wptournreg_get_field_list();
 	
@@ -20,7 +21,7 @@ function wptournreg_insert_data() {
 				
 			if ( preg_match( '/char|string|text/i', $scheme[ $field ] ) ) {
 				
-				$prepared = "'" . $wpdb->_real_escape( $value ) . "'";
+				$prepared = "'" . wptournreg_escape( $value ) . "'";
 			}
 			else if ( preg_match( '/bool|int\(1\)/i', $scheme[ $field ] ) ) {
 				
@@ -28,12 +29,12 @@ function wptournreg_insert_data() {
 			}
 			else if ( preg_match( '/int\(/i', $scheme[ $field ] ) ) {
 				
-				$prepared = (  preg_match( '/\d+/', $value ) ) ? intval( $value ) : 'NULL';
-				;
+				$val = wptournreg_escape( $value );
+				$prepared = (  preg_match( '/\d+/', $val ) ) ? intval( $val ) : 'NULL';
 			}
 			else {
 				
-				$prepared = $wpdb->_real_escape( $value );
+				$prepared = wptournreg_escape( $value );
 			}
 			
 			array_push( $fields, $field );

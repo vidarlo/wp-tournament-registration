@@ -12,6 +12,7 @@ function wptournreg_get_form( $atts = [], $content = null ) {
 		'class' => null,
 		'css' => null,
 		'css_id' => null,
+		'email' => null,
 		'tournament_id' => null,
 	), $atts );
 	
@@ -47,7 +48,7 @@ function wptournreg_add_participant() {
 	
 	require_once WP_TOURNREG_DATABASE_PATH.'insert.php';
 	
-	echo '<html><head></head><body><header style="min-height:30px"></header>';
+	echo '<html><head></head><body><header style="min-height:50px"></header>';
 	
 	if ( wptournreg_insert_data() === 1 ) {
 		

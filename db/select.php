@@ -7,8 +7,9 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
  */
 function wptournreg_select_tournament( $tournament_id ) {
 	
+	require_once WP_TOURNREG_DATABASE_PATH . 'escape.php';
+	
 	global $wpdb;
 
-	$tourn = $wpdb->_real_escape( $tournament_id );
-	return $wpdb->get_results('SELECT * FROM ' . WP_TOURNREG_DATA_TABLE . " WHERE tournament_id = '" . $tourn . "';" );
+	return $wpdb->get_results('SELECT * FROM ' . WP_TOURNREG_DATA_TABLE . " WHERE tournament_id = '" . wptournreg_escape( $tournament_id ) . "';" );
 }

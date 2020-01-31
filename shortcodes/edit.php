@@ -132,7 +132,7 @@ function wptournreg_edit_participant() {
 	
 	global $wpdb;
 	
-	echo '<html><head></head></html><body><header style="min-height:30px"></header><p>';
+	echo '<html><head></head></html><body><header style="min-height:50px"></header><p>';
 	
 	if ( array_key_exists( 'delete1', $_POST ) && array_key_exists( 'delete2',$_POST ) && array_key_exists( 'delete3', $_POST ) ) {
 		
