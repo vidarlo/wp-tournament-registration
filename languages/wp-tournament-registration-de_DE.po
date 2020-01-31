@@ -66,4 +66,8 @@ msgstr "%sDanke für Ihre Anmeldung.%s"
 
 # shortcodes/form.php
 msgid "%sRegistration failed!%s"
-msgstr "%sDie Registrierung ist fehlgeschlagen!%s"
+msgstr "%sDie Anmeldung ist fehlgeschlagen!%s"
+
+# shortcodes/form.php
+msgid "New participant"
+msgstr "Ein neuer Teilnehmer hat sich angemeldet"

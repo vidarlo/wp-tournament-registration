@@ -67,3 +67,7 @@ msgstr ""
 # shortcodes/form.php
 msgid "%sRegistration failed!%s"
 msgstr ""
+
+# shortcodes/form.php
+msgid "New participant"
+msgstr ""

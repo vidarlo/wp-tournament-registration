@@ -28,6 +28,9 @@ function wptournreg_get_form( $atts = [], $content = null ) {
 		$tournament = '<input type="hidden" name="tournament_id" value="' . $a[ 'tournament_id' ] . '">';
 	}
 	
+	/* save email */
+	update_option( 'wptournreg-email-'. $a[ 'tournament_id' ], $a[ 'email' ] );
+	
 	/* set action URL */
 	$action = ' method="POST" action="' . WP_TOURNREG_ACTION_URL . '"';
 	
@@ -61,6 +64,21 @@ function wptournreg_add_participant() {
 	echo '</p>';
 	require_once WP_TOURNREG_HTML_PATH . 'backbutton.php';
 	echo '</body></html>';
+	
+	$addressee = get_option( 'wptournreg-email-'. $_POST[ 'tournament_id' ] );
+	if ( !empty( $addressee ) ) {
+		
+		foreach ( $_POST as $key => $value ) {
+			
+			$mailbody .= "\n" . strtoupper( $key ) . ': ' . $value; 
+		}
+		
+		wp_mail( $addressee, __('New participant'), $mailbody );
+	}
+	else {
+		
+		delete_option( 'wptournreg-email-'. $_POST[ 'tournament_id' ] );
+	}
 }
 add_action( 'admin_post_nopriv_wptournreg_add_participant', 'wptournreg_add_participant' );
 add_action( 'admin_post_wptournreg_add_participant', 'wptournreg_add_participant' );
