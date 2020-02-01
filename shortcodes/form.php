@@ -66,7 +66,7 @@ function wptournreg_add_participant() {
 	echo '</body></html>';
 	
 	$addressee = get_option( 'wptournreg-email-'. $_POST[ 'tournament_id' ] );
-	if ( !empty( $addressee ) ) {
+	if ( strpos( $addressee, '@' ) !== false ) {
 		
 		foreach ( $_POST as $key => $value ) {
 			
@@ -76,6 +76,7 @@ function wptournreg_add_participant() {
 		wp_mail( $addressee, __('New participant'), $mailbody );
 	}
 	else {
+		
 		
 		delete_option( 'wptournreg-email-'. $_POST[ 'tournament_id' ] );
 	}
