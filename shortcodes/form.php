@@ -65,15 +65,31 @@ function wptournreg_add_participant() {
 	require_once WP_TOURNREG_HTML_PATH . 'backbutton.php';
 	echo '</body></html>';
 	
-	$addressee = get_option( 'wptournreg-email-'. $_POST[ 'tournament_id' ] );
-	if ( strpos( $addressee, '@' ) !== false ) {
+	$addressee = preg_split( '/\s*,\s*/', trim( get_option( 'wptournreg-email-'. $_POST[ 'tournament_id' ] ) ) );
+	$to =[];
+	foreach ( $addressee as $email ) {
+		
+		if ( filter_var( $email, FILTER_VALIDATE_EMAIL ) ) {
+			
+			$to[] = $email;
+		}
+		else {
+			
+			error_log( sprintf( __( '%s is not a valid E-mail address!', 'wp-tournament-registration'), $email ) );
+		}
+	}
+
+	if ( count( $to ) > 0 ) {
 		
 		foreach ( $_POST as $key => $value ) {
 			
-			$mailbody .= "\n" . strtoupper( $key ) . ': ' . $value; 
+			if ( strcmp( $key, 'action' ) != 0 ) {
+				
+				$mailbody .= "\n" . strtoupper( $key ) . ': ' . $value;
+			} 
 		}
 		
-		wp_mail( $addressee, __('New participant'), $mailbody );
+		wp_mail( $to, __('New participant'), $mailbody, array( 'Reply-To' => trim ( $_POST[ 'email' ] ) ) );
 	}
 	else {
 		
