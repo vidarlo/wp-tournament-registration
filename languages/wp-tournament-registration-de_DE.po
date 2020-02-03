@@ -71,3 +71,7 @@ msgstr "%sDie Anmeldung ist fehlgeschlagen!%s"
 # shortcodes/form.php
 msgid "New participant"
 msgstr "Ein neuer Teilnehmer hat sich angemeldet"
+
+# shortcodes/form.php
+msgid "%s is not a valid E-mail address!"
+msgstr "ist keine gültige E-Mailadresse!"
