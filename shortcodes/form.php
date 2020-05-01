@@ -29,6 +29,9 @@ function wptournreg_get_form( $atts = [], $content = null ) {
 		$tournament = '<input type="hidden" name="tournament_id" value="' . $a[ 'tournament_id' ] . '">';
 	}
 	
+	/* Honeypot */
+	$noscript = '<noscript><input type="url" name="wptournregurl" value="" placeholder="' .  get_home_url() . '"></noscript>';
+	
 	/* save email */
 	update_option( 'wptournreg-email-'. $a[ 'tournament_id' ], $a[ 'email' ] );
 	
@@ -46,7 +49,7 @@ function wptournreg_get_form( $atts = [], $content = null ) {
 		$backlink = wptournreg_get_backlink( 'form' );
 	}
 	
-	return "<form$id$class$css$action>$tournament" . do_shortcode( $content, false ) . '<input type="hidden" name="action" value="wptournreg_add_participant"><input type="submit"><input type="reset"></form>' . $backlink;
+	return "<form$id$class$css$action>$noscript$tournament" . do_shortcode( $content, false ) . '<input type="hidden" name="action" value="wptournreg_add_participant"><input type="submit"><input type="reset"></form>' . $backlink;
 }
 
 add_shortcode( 'wptournregform', 'wptournreg_get_form' );
@@ -58,49 +61,59 @@ function wptournreg_add_participant() {
 	
 	echo '<html><head></head><body><header style="min-height:50px"></header>';
 	
-	if ( wptournreg_insert_data() === 1 ) {
+	if ( !array_key_exists( 'wptournregurl', $_POST ) ) {
 		
-		printf( __( '%sThank you for your registration.%s', 'wp-tournament-registration'), '<strong class="wptournreg-thanks">', '</strong>' );
+		if ( wptournreg_insert_data() === 1 ) {
+			
+			printf( __( '%sThank you for your registration.%s', 'wp-tournament-registration'), '<strong class="wptournreg-thanks">', '</strong>' );
+			
+			$addressee = preg_split( '/\s*,\s*/', trim( get_option( 'wptournreg-email-'. $_POST[ 'tournament_id' ] ) ) );
+			$to =[];
+			foreach ( $addressee as $email ) {
+				
+				if ( filter_var( $email, FILTER_VALIDATE_EMAIL ) ) {
+					
+					$to[] = $email;
+				}
+				else {
+					
+					error_log( sprintf( __( '%s is not a valid E-mail address!', 'wp-tournament-registration'), $email ) );
+				}
+			}
+
+			if ( count( $to ) > 0 ) {
+				
+				foreach ( $_POST as $key => $value ) {
+					
+					if ( strcmp( $key, 'action' ) != 0 ) {
+						
+						$mailbody .= "\n" . strtoupper( $key ) . ': ' . $value;
+					} 
+				}
+				
+				wp_mail( $to, __('New participant'), $mailbody, array( 'Reply-To' => trim ( $_POST[ 'email' ] ) ) );
+			}
+			else {
+				
+				
+				delete_option( 'wptournreg-email-'. $_POST[ 'tournament_id' ] );
+			}
+		}
+		else {
+			
+			printf( __( '%sRegistration failed!%s', 'wp-tournament-registration'), '<strong class="wptournreg-error">', '</strong>' );
+		}
 	}
 	else {
-		
-		printf( __( '%sRegistration failed!%s', 'wp-tournament-registration'), '<strong class="wptournreg-error">', '</strong>' );
+			
+		 printf( __( '%sRegistration failed!%s', 'wp-tournament-registration'), '<strong class="wptournreg-error">', '</strong>' );
 	}
+	
 	echo '</p>';
 	require_once WP_TOURNREG_HTML_PATH . 'backbutton.php';
 	echo '</body></html>';
 	
-	$addressee = preg_split( '/\s*,\s*/', trim( get_option( 'wptournreg-email-'. $_POST[ 'tournament_id' ] ) ) );
-	$to =[];
-	foreach ( $addressee as $email ) {
-		
-		if ( filter_var( $email, FILTER_VALIDATE_EMAIL ) ) {
-			
-			$to[] = $email;
-		}
-		else {
-			
-			error_log( sprintf( __( '%s is not a valid E-mail address!', 'wp-tournament-registration'), $email ) );
-		}
-	}
-
-	if ( count( $to ) > 0 ) {
-		
-		foreach ( $_POST as $key => $value ) {
-			
-			if ( strcmp( $key, 'action' ) != 0 ) {
-				
-				$mailbody .= "\n" . strtoupper( $key ) . ': ' . $value;
-			} 
-		}
-		
-		wp_mail( $to, __('New participant'), $mailbody, array( 'Reply-To' => trim ( $_POST[ 'email' ] ) ) );
-	}
-	else {
-		
-		
-		delete_option( 'wptournreg-email-'. $_POST[ 'tournament_id' ] );
-	}
+	
 }
 add_action( 'admin_post_nopriv_wptournreg_add_participant', 'wptournreg_add_participant' );
 add_action( 'admin_post_wptournreg_add_participant', 'wptournreg_add_participant' );
