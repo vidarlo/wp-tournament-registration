@@ -2,14 +2,19 @@
 
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
  
-/* also read https://codex.wordpress.org/Writing_a_Plugin */
- 
 /*
-* Plugin Name: WP Tournament Registration
-* Description: Simple tournament registration form
-* Text Domain: wp-tournament-registration
-* Domain Path: /languages
- 
+* Plugin Name:         WP Tournament Registration
+* Plugin URI:          https://ingram-braun.net/erga/wp-tournament-registration-wordpress-plugin/
+* Version:             1.0.0
+* Requires at least:   5.4
+* Requires PHP:        7.2
+* Author:              Ingram Braun
+* Author URI:          https://ingram-braun.net/
+* License:             GPL v2 or later
+* License URI:         https://www.gnu.org/licenses/gpl-2.0.html
+* Description:         Simple tournament registration form
+* Text Domain:         wp-tournament-registration
+* Domain Path:         /languages
 */
 
 /* VERSIONS */
