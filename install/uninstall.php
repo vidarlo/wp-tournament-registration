@@ -7,8 +7,5 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 function wptournreg_uninstall() {
 	
 	global $wpdb;
-	$table_name = WP_TOURNREG_DATA_TABLE;
-	
-	$wpdb->query("DROP TABLE IF EXISTS $table_name");
-	
+	$wpdb->query("DROP TABLE IF EXISTS " . WP_TOURNREG_DATA_TABLE );
 }
