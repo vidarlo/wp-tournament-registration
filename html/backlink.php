@@ -1,5 +1,7 @@
 <?php
 
+/* Provides a backlink to plugin homepage. Must only be conditional due to WordPress rules. */
+
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 function wptournreg_get_backlink( $medium = 'html' ) {

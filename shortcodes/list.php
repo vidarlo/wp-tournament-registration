@@ -9,6 +9,7 @@ function wptournreg_get_list( $atts = [] ) {
     $atts = array_change_key_case((array)$atts, CASE_LOWER);
 	
 	$a = shortcode_atts( array(
+		'backlink' => null,
 		'class' => null,
 		'css' => null,
 		'css_id' => null,
@@ -117,8 +118,10 @@ function wptournreg_get_list( $atts = [] ) {
 	
 	$html .= '</tbody></table></figure>';
 	
-	require_once WP_TOURNREG_HTML_PATH . 'backlink.php';
-	$html .= wptournreg_get_backlink( 'list' );
+	if ( !empty ( $a{ 'backlink' } ) ) {
+		require_once WP_TOURNREG_HTML_PATH . 'backlink.php';
+		$html .= wptournreg_get_backlink( 'list' );
+	}
 	
 	return $html;
 	

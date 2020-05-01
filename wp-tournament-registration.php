@@ -59,8 +59,8 @@ require_once WP_TOURNREG_HTTP_PATH.'cache.php';
 
 add_option( 'wptournreg_db_version', WP_TOURNREG_DB_VER );
 register_activation_hook( __FILE__, 'wptournreg_install' );
-#register_uninstall_hook( __FILE__, 'wptournreg_uninstall' );
-register_deactivation_hook( __FILE__, 'wptournreg_uninstall' );
+register_uninstall_hook( __FILE__, 'wptournreg_uninstall' );
+#register_deactivation_hook( __FILE__, 'wptournreg_uninstall' );
 
 /* SHORTCODES */
 require_once WP_TOURNREG_SHORTCODE_PATH . 'edit.php';

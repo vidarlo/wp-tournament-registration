@@ -9,6 +9,7 @@ function wptournreg_get_form( $atts = [], $content = null ) {
     $atts = array_change_key_case((array)$atts, CASE_LOWER);
  
 	$a = shortcode_atts( array(
+		'backlink' => null,
 		'class' => null,
 		'css' => null,
 		'css_id' => null,
@@ -39,9 +40,13 @@ function wptournreg_get_form( $atts = [], $content = null ) {
 	$class = ' class="wptournreg-form' . ( empty ( $a{ 'class' } ) ? '' :  ' ' . $a{ 'class' } ) . '"';
 	$id = ( empty ( $a{ 'css_id' } ) ) ? '' : ' id="' . $a{ 'css_id' } . '"';
 	
-	require_once WP_TOURNREG_HTML_PATH . 'backlink.php';
+	$backlink = '';
+	if ( !empty ( $a{ 'backlink' } ) ) {
+		require_once WP_TOURNREG_HTML_PATH . 'backlink.php';
+		$backlink = wptournreg_get_backlink( 'form' );
+	}
 	
-	return "<form$id$class$css$action>$tournament" . do_shortcode( $content, false ) . '<input type="hidden" name="action" value="wptournreg_add_participant"><input type="submit"><input type="reset"></form>' . wptournreg_get_backlink( 'form' );
+	return "<form$id$class$css$action>$tournament" . do_shortcode( $content, false ) . '<input type="hidden" name="action" value="wptournreg_add_participant"><input type="submit"><input type="reset"></form>' . $backlink;
 }
 
 add_shortcode( 'wptournregform', 'wptournreg_get_form' );
