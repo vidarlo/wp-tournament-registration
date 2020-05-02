@@ -13,6 +13,7 @@ function wptournreg_get_form( $atts = [], $content = null ) {
 		'class' => null,
 		'css' => null,
 		'css_id' => null,
+		'disabled' => null,
 		'email' => null,
 		'tournament_id' => null,
 	), $atts );
@@ -38,6 +39,8 @@ function wptournreg_get_form( $atts = [], $content = null ) {
 	/* set action URL */
 	$action = ' method="POST" action="' . WP_TOURNREG_ACTION_URL . '"';
 	
+	$disabled = ( !isset( $a[ 'disabled' ] ) ) ? '' : ' disabled';
+	
 	/* add custom CSS */
 	$css = ( empty ( $a{ 'css' } ) ) ? '' : ' style="' . trim ( $a[ 'css' ] ) . '"';
 	$class = ' class="wptournreg-form' . ( empty ( $a[ 'class' ] ) ? '' :  ' ' . trim( $a[ 'class' ] ) ) . '"';
@@ -49,7 +52,7 @@ function wptournreg_get_form( $atts = [], $content = null ) {
 		$backlink = wptournreg_get_backlink( 'form' );
 	}
 	
-	return "<form$id$class$css$action>$noscript$tournament" . do_shortcode( $content, false ) . '<input type="hidden" name="action" value="wptournreg_add_participant"><input type="submit"><input type="reset"></form>' . $backlink;
+	return "<form$id$class$css$action>$noscript$tournament" . do_shortcode( $content, false ) . '<input type="hidden" name="action" value="wptournreg_add_participant"><input type="submit"' . $disabled . '><input type="reset"' . $disabled . '></form>' . $backlink;
 }
 
 add_shortcode( 'wptournregform', 'wptournreg_get_form' );
