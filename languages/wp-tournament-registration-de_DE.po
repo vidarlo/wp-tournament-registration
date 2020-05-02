@@ -8,9 +8,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2020-01-28T10:35:50+01:00\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.4.0\n"
+"PO-Revision-Date: 2020-05-02 11:01+0200\n"
+"X-Generator: Poedit 2.3\n"
 "X-Domain: languages\n"
+"Language: de_DE\n"
 
 # html/backbutton.php
 msgid "Back"
@@ -18,7 +19,7 @@ msgstr "Zurück"
 
 # html/backlink.php
 msgid "%s by %s"
-msgstr "%s von %s"#
+msgstr "%s von %s\""
 
 # shortcodes/edit.php
 msgid "Are you sure?"
@@ -69,9 +70,9 @@ msgid "%sRegistration failed!%s"
 msgstr "%sDie Anmeldung ist fehlgeschlagen!%s"
 
 # shortcodes/form.php
-msgid "New participant"
-msgstr "Ein neuer Teilnehmer hat sich angemeldet"
+msgid "Enable JavaScript!"
+msgstr "Bitte JavaScript anschalten!"
 
 # shortcodes/form.php
-msgid "%s is not a valid E-mail address!"
-msgstr "ist keine gültige E-Mailadresse!"
+msgid "New participant"
+msgstr "Ein neuer Teilnehmer hat sich angemeldet"

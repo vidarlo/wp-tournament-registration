@@ -71,8 +71,3 @@ msgstr ""
 # shortcodes/form.php
 msgid "New participant"
 msgstr ""
-
-
-# shortcodes/form.php
-msgid "%s is not a valid E-mail address!"
-msgstr ""
