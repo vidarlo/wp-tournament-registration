@@ -18,6 +18,7 @@ function wptournreg_get_fields( $atts = [] ) {
 		'class' => null,
 		'css' => null,
 		'css_id' => null,
+		'disabled' => null,
 		'field' => null,
 		'label' => null,
 		'placeholder' => null,
@@ -29,12 +30,13 @@ function wptournreg_get_fields( $atts = [] ) {
 	$label = '<label for="' . $a[ 'field' ] . '">' . ( empty ( $a[ 'label' ] ) ? $a[ 'field' ] :  $a[ 'label' ]  ) . '</label>';
 	$name=' name="' . $a[ 'field' ] . '"';
 	$placeholder = ( empty ( $a[ 'placeholder' ] ) ) ? '' : ' placeholder="' . $a[ 'placeholder' ] . '"';
-	$required = ( !isset( $a[ 'required' ] ) ) ? '' : ' required="required"';
+	$required = ( !isset( $a[ 'required' ] ) ) ? '' : ' required';
+	$disabled = ( !isset( $a[ 'disabled' ] ) ) ? '' : ' disabled';
 	
 	/* add custom CSS */
-	$css = ( empty ( $a{ 'css' } ) ) ? '' : ' style="' . $a{ 'css' } . '"';
-	$class = ' class="wptournreg-field' . ( !isset( $a[ 'required' ] ) ? '' : ' wptourn-required' ) . ( empty ( $a{ 'class' } ) ? '' : ' ' . $a{ 'class' } ) . '"';
-	$id = ( empty ( $a{ 'css_id' } ) ) ? '' : ' id="' . $a{ 'css_id' } . '"';
+	$css = ( empty ( $a[ 'css' ] ) ) ? '' : ' style="' . $a[ 'css' ] . '"';
+	$class = ' class="wptournreg-field' . ( !isset( $a[ 'required' ] ) ? '' : ' wptourn-required' ) . ( empty ( $a[ 'class' ] ) ? '' : ' ' . $a[ 'class' ] ) . '"';
+	$id = ( empty ( $a[ 'css_id' ] ) ) ? '' : ' id="' . $a[ 'css_id' ] . '"';
 	
 	/* sizes */
 	$bigsize = 50;
@@ -51,27 +53,27 @@ function wptournreg_get_fields( $atts = [] ) {
 	}
 	else if ( $field == 'email' ) {
 		
-		return "<p$id$class$style>$label<input$id$class$name$required$placeholder type='email' size='$bigsize'></p>";
+		return "<p$id$class$style>$label<input$id$class$name$required$disabled$placeholder type='email' size='$bigsize'></p>";
 	}
 	else if ( preg_match( '/^phone\d+/i', $scheme[ $field ] ) ) {
 		
-		return "<p$id$class$style>$label<input$id$class$name$required$placeholder type='tell' size='$mallsize'></p>";
+		return "<p$id$class$style>$label<input$id$class$name$required$disabled$placeholder type='tell' size='$mallsize'></p>";
 	}
 	else if ( $scheme[ $field ] == 'text' ) {
 		
-		return "<p$id$class$css>$label<textarea$name$required$placeholder cols='$bigsize' rows='8'></textarea></p>";
+		return "<p$id$class$css>$label<textarea$name$required$disabled$placeholder cols='$bigsize' rows='8'></textarea></p>";
 	}
 	else if ( preg_match( '/char|string|text/i', $scheme[ $field ] ) ) {
 	
-		return "<p$id$class$css>$label<input$id$class$name$required$placeholder type='text' size='$bigsize'></p>";
+		return "<p$id$class$css>$label<input$id$class$name$required$disabled$placeholder type='text' size='$bigsize'></p>";
 	}
 	else if ( preg_match( '/bool|int\(1\)/i', $scheme[ $field ] ) ) {
 	
-		return "<p$id$class$css>$label<input$id$class$name$checked type='checkbox'></span>";
+		return "<p$id$class$css>$label<input$id$class$name$checked$disabled type='checkbox'></span>";
 	}
 	else if ( preg_match( '/int/i', $scheme[ $field ] ) ) {
 	
-		return "<p$id$class$css>$label<input$id$class$name$required$placeholder type='text size='$smallsize'></p>";
+		return "<p$id$class$css>$label<input$id$class$name$required$disabled$placeholder type='text size='$smallsize'></p>";
 	}
 	else {
 		
