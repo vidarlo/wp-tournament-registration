@@ -15,7 +15,7 @@ function wptournreg_insert_data() {
 	
 	foreach( $_POST as $field => $value ) {
 		
-		if ( $field == 'id' || $field == 'time' || $field == 'cc' ) { continue; }
+		if ( $field == 'id' || $field == 'time' || $field == 'cc' || $field == 'touched' ) { continue; }
 		
 		if ( array_key_exists( $field, $scheme ) ) {
 				

@@ -7,8 +7,8 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 function wptournreg_install() {
 	global $wpdb;
-	global $wptournreg_db_version;
 
+	add_option( 'wptournreg_db_version', WP_TOURNREG_DB_VER );
 	$table_name = WP_TOURNREG_DATA_TABLE;
 	
 	$charset_collate = $wpdb->get_charset_collate();
@@ -26,6 +26,7 @@ function wptournreg_install() {
 		rating2 mediumint(9) DEFAULT NULL,
 		affiliation tinytext DEFAULT '' NOT NULL,
 		message text DEFAULT '' NOT NULL,
+		approved bool DEFAULT FALSE NOT NULL,
 		protected bool DEFAULT FALSE NOT NULL,
 		fee_is_paid bool DEFAULT FALSE NOT NULL,
 		gender bool DEFAULT FALSE NOT NULL,

@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 */
 
 /* VERSIONS */
-define( "WP_TOURNREG_DB_VER", 1 );
+define( "WP_TOURNREG_DB_VER", 2 );
 define( "WP_TOURNREG_PLUGIN_VER", '1.0.0' );
 define( "WP_TOURNREG_TBSORT_VER", '2.32.2' );
 
@@ -46,6 +46,10 @@ define("WP_TOURNREG_DATA_TABLE", $wpdb->prefix . 'wptournreg_participants' );
 /* ACTIVATION */
 require_once WP_TOURNREG_INSTALL_PATH . 'install.php';
 require_once WP_TOURNREG_INSTALL_PATH . 'uninstall.php';
+require_once WP_TOURNREG_INSTALL_PATH . 'upgrade.php';
+register_activation_hook( __FILE__, 'wptournreg_install' );
+register_uninstall_hook( __FILE__, 'wptournreg_uninstall' );
+add_action('plugins_loaded', 'wptournreg_upgrade');
 
 /* LOCALIZATION */
 function wptournreg_load_textdomain() {
@@ -54,13 +58,10 @@ function wptournreg_load_textdomain() {
 }
 add_action( 'init', 'wptournreg_load_textdomain' );
 
-/* NO CACHE */
-require_once WP_TOURNREG_HTTP_PATH.'cache.php';
+/* Suppress caching for rapidly changing lists */
+require_once WP_TOURNREG_HTTP_PATH. 'cache.php';
 
-add_option( 'wptournreg_db_version', WP_TOURNREG_DB_VER );
-register_activation_hook( __FILE__, 'wptournreg_install' );
-register_uninstall_hook( __FILE__, 'wptournreg_uninstall' );
-#register_deactivation_hook( __FILE__, 'wptournreg_uninstall' );
+
 
 /* SHORTCODES */
 require_once WP_TOURNREG_SHORTCODE_PATH . 'edit.php';

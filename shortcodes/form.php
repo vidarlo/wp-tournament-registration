@@ -31,7 +31,7 @@ function wptournreg_get_form( $atts = [], $content = null ) {
 	}
 	
 	/* Honeypot */
-	$noscript = '<noscript><label>' .   __( 'Enable JavaScript!' ) . '<input type="url" name="url" placeholder="' . get_home_url()  .  '"></label></noscript>';
+	$noscript = '<noscript><div><strong>' .   __( 'Enable JavaScript!' ) . '</strong></div></noscript>';
 	
 	/* E-mail */
 	$email = ( empty ( $a[ 'email' ] ) ) ? '' : '<input type="hidden" name="cc" value="' . trim( $a[ 'email' ] ) . '">';
@@ -64,7 +64,7 @@ function wptournreg_add_participant() {
 	
 	echo '<html><head></head><body><header style="min-height:50px"></header>';
 	
-	if ( !array_key_exists( 'url', $_POST ) ) {
+	if ( array_key_exists( 'touched', $_POST ) ) {
 		
 		if ( wptournreg_insert_data() === 1 ) {
 			
@@ -89,6 +89,8 @@ function wptournreg_add_participant() {
 				if ( count( $to ) > 0 ) {
 					
 					foreach ( $_POST as $key => $value ) {
+						
+						if ( $key == 'touched' ) { continue; }
 						
 						if ( strcmp( $key, 'action' ) != 0 ) {
 							
