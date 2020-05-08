@@ -10,7 +10,27 @@ jQuery( '.wptournregedit-select' ).on( 'change', function() {
 	
 }).trigger( 'change' );
 
-/* Check registration form on human user */
+/* Approve player. */
+jQuery( '.wptournregedit-participant').each( function() {
+	
+	let form = jQuery( this );
+	let select = jQuery( '.wptournregedit-select>[value=#wptournregedit-participant' + form.find( '[name=id]' ).val() + ']' );
+	form.find( '[name=approved]' ).on( 'change', function() {
+		
+		if ( jQuery( this ).is( ':checked' ) ) {
+			
+			select.removeClass( 'wptournregedit-not-approved' );
+			console.log("REMOVED");
+		}
+		else {
+			
+			select.addClass( 'wptournregedit-not-approved' );
+			console.log("SAVED");
+		}
+	});
+});
+
+/* Check for bots */
 var wptournregtouched = false;
 jQuery( '.wptournreg-form input' ).on( 'focus mouseover touch', function() {
 	

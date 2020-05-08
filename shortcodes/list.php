@@ -72,48 +72,51 @@ function wptournreg_get_list( $atts = [] ) {
 	
 	foreach( $result as $participant ) {
 		
-		$html .= '<tr><td>' . ++$count . '</td>';
+		if ( $participant->{ 'approved' } ) {
 		
-		if ( $participant->{ 'protected' } == 1 ) {
+			$html .= '<tr><td>' . ++$count . '</td>';
 			
-			$protected = true;
-		}
-		else {
-			
-			$protected = false;
-		}
-	
-		foreach( $fields as $field ) {
-			
-			if ( array_key_exists( $field, $participant ) ) {
-										
-				if ( $protected && in_array( $field, $protected_fields ) && !empty( $participant->{ $field } ) ) {
-					
-						$value = '***';
+			if ( $participant->{ 'protected' } == 1 ) {
+				
+				$protected = true;
+			}
+			else {
+				
+				$protected = false;
+			}
+		
+			foreach( $fields as $field ) {
+				
+				if ( array_key_exists( $field, $participant ) ) {
+											
+					if ( $protected && in_array( $field, $protected_fields ) && !empty( $participant->{ $field } ) ) {
+						
+							$value = '***';
+					}
+					else if ( preg_match( '/bool|int\(1\)/i', $scheme[ $field ] ) ) {
+						
+						$value = ( $participant->{ $field } == 1) ? 'X' : '';;
+					}
+					else if ( strcmp( $field, 'email' ) === 0 ) {
+						
+						$value = '<a href="mailto:' . $participant->{ $field } . '">' . $participant->{ $field } . '</a>';
+					}
+					else if ( strcmp( $field, 'time' ) === 0 ) {
+						
+						$value = wp_date( get_option( 'date_format' ), $participant->{ 'time' } );
+					}
+					else {
+						
+						$value = $participant->{ $field };
+					}
+				
+					$html .= '<td>' . $value . '</td>';
 				}
-				else if ( preg_match( '/bool|int\(1\)/i', $scheme[ $field ] ) ) {
-					
-					$value = ( $participant->{ $field } == 1) ? 'X' : '';;
-				}
-				else if ( strcmp( $field, 'email' ) === 0 ) {
-					
-					$value = '<a href="mailto:' . $participant->{ $field } . '">' . $participant->{ $field } . '</a>';
-				}
-				else if ( strcmp( $field, 'time' ) === 0 ) {
-					
-					$value = wp_date( get_option( 'date_format' ), $participant->{ 'time' } );
-				}
-				else {
-					
-					$value = $participant->{ $field };
-				}
-			
-				$html .= '<td>' . $value . '</td>';
+				
 			}
 			
+			$html .= '</tr>';
 		}
-		
-		$html .= '</tr>';
 	}
 	
 	$html .= '</tbody></table></figure>';

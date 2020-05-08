@@ -9,6 +9,9 @@
 .wptournregedit-delcheck {
 	padding: 0 15px 0 3px;
 }
+.wptournregedit-not-approved {
+	color: red !important;
+}
 .wptournreg-form label,
 .wptournregedit-participant label {
 	vertical-align: top;

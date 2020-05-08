@@ -6,8 +6,6 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 function wptournreg_upgrade() {
 	
-	error_log("WAS HERE...");
-	
 	$db_ver = get_option( 'wptournreg_db_version' );
 	
 	if ( $db_ver !== false && version_compare( $db_ver, WP_TOURNREG_DB_VER, '<' ) ) {
