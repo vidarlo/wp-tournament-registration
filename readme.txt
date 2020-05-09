@@ -14,8 +14,8 @@ A simple but highly configurable tournament registration form providing shortcod
 WP Tournament Registration is a plugin that provides shortcodes intended for registering players with hobby sport events. As a matter of fact, it was made for the championship of my [local chess club](https://schach-goettingen.de/).There are four shortcodes for different views:
 
 * `[wptournregedit tournament_id=\"myID\" /]` is an editor for the players\' data.
-* `[wptournregexport tournament_id=\"myID\" /]` is a plain text export filter
-* `[wptournregform tournament_id=\"myID\"] [/wptournregform]` is a form where people can register with the competition. It wraps some `[wptournregfield field=\"fieldname\" /]` shortcodes which customize the desired inputs.
+* `[wptournregexport tournament_id=\"myID\"]...[/wptournregexport]` is a plain text export filter
+* `[wptournregform tournament_id=\"myID\"]...[/wptournregform]` is a form where people can register with the competition. It covers some `[wptournregfield field=\"fieldname\" /]` shortcodes which customize the desired inputs.
 *` [wptournreglist tournament_id=\"myID\" /]` is a sortable list view of all approved participants.
 
 All these shortcodes are customizable through a set of optional attributes. 
@@ -53,7 +53,7 @@ It is advisable not to misuse fields since there are some internal checks on the
 *`css` adds a style attribute with custom CSS to the form.
 *`id` adds a custom CSS id to the form.
 *`fields_set` a comma-separated list of fields which get ignored if empty.
-*`file_name` the name of the export file.
+*`filename` the name of the export file.
 *`format` a plain text string where all field names get replaced by the respective values.
 
 `wptournregform`:
@@ -86,6 +86,9 @@ It is advisable not to misuse fields since there are some internal checks on the
 *`label` the label of the field.
 *`placeholder` the placeholder is shown in an empty field.
 *`required` if set to any value the field is marked as required.
+
+= Usage =
+
 
 == Installation ==
 1. In your wp-admin (WordPress dashboard), go to Plugins Menu > Add New

@@ -13,7 +13,7 @@ function wptournreg_export( $atts = [], $content = null ) {
 		'css' => null,
 		'css_id' => null,
 		'fields_set' => null,
-		'file_name' => 'wptournreg.txt',
+		'filename' => 'wptournreg.txt',
 		'format' => null,
 		'linebreak' => '',
 		'tournament_id' => null,
@@ -44,8 +44,8 @@ function wptournreg_export( $atts = [], $content = null ) {
 	
 	/* set action URL */
 	$action = ' method="POST" action="' . WP_TOURNREG_ACTION_URL . '"';
-	
-	return "<form$id$class$css$action target='_blank'><p><strong>$content</strong></p>$tournament$format$linebreak$fields_set" . '<input type="hidden" name="action" value="wptournreg_get_txt"><input type="submit"></form>';
+
+	return "<form$id$class$css$action target='_blank'><p><strong>$content</strong></p>$tournament$format$linebreak$fields_set$filename" . '<input type="hidden" name="action" value="wptournreg_get_txt"><input type="submit"></form>';
 	
 }
 
@@ -65,33 +65,36 @@ function wptournreg_get_txt() {
 	
 	foreach( $result as $participant ) {
 		
-		$found = true;
+		if ( $participant->{ 'approved' } ) {
 		
-		if ( !empty( $_POST[ 'fields_set' ] ) ) {
+			$found = true;
 			
-			foreach( $fields_set as $available ) {
+			if ( !empty( $_POST[ 'fields_set' ] ) ) {
 				
-				if ( !array_key_exists( $available, $participant ) || empty ( $participant->{ $available } ) ) {
+				foreach( $fields_set as $available ) {
 					
-					$found = false;
-					break;  
+					if ( !array_key_exists( $available, $participant ) || empty ( $participant->{ $available } ) ) {
+						
+						$found = false;
+						break;  
+					}
 				}
 			}
-		}
-		
-		if ( $found ) {error_log('TEST');
-		
-			$row = $_POST[ 'format' ];
 			
-			foreach( $participant as $field => $value ) {
+			if ( $found ) {
+			
+				$row = $_POST[ 'format' ];
 				
-				$row = str_replace( "%$field%", $value, $row );
-				$row = str_replace( '\"', '"', $row );
-				$row = str_replace( "\'", "'", $row );
+				foreach( $participant as $field => $value ) {
+					
+					$row = str_replace( "%$field%", $value, $row );
+					$row = str_replace( '\"', '"', $row );
+					$row = str_replace( "\'", "'", $row );
+				}
+				
+				$formatted[] = $row;
 			}
-			
-			$formatted[] = $row;
-		}			
+		}
 	}
 	
 	header('Content-Type: text/plain');
@@ -100,3 +103,4 @@ function wptournreg_get_txt() {
 	echo implode( $linebreak, $formatted );
 }
 add_action( 'admin_post_nopriv_wptournreg_get_txt', 'wptournreg_get_txt' );
+add_action( 'admin_post_wptournreg_get_txt', 'wptournreg_get_txt' );
