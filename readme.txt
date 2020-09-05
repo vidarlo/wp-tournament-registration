@@ -1,3 +1,4 @@
+
 === WP Tournament Registration ===
 Contributors: archaeopath
 Tags: events, registration, event registration, tournament, tournaments, competition, competitions, sport, chess, hobby sport
@@ -11,6 +12,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 A simple but highly configurable tournament registration form providing shortcodes for form, list, editor and export views. It is mainly intended for registering players with hobby sport events.
 
 == Description ==
+
 WP Tournament Registration is a plugin that provides shortcodes intended for registering players with hobby sport events. As a matter of fact, it was made for the championship of my [local chess club](https://schach-goettingen.de/).There are four shortcodes for different views:
 
 * `[wptournregedit tournament_id=\"myID\" /]` is an editor for the players\' data.
@@ -40,7 +42,7 @@ All these shortcodes are customizable through a set of optional attributes.
 * `rating1` [integer]: a rating that is used to calculate ranking lists.
 * `rating2` [integer]: another rating that is used to calculate ranking lists.
 * `time` [read-only]: a timestamp that records the exact date and time of submitting.
-It is advisable not to misuse fields since there are some internal checks on the values. Use the custom fields instead. It is hard to say how what the length of input fields is as this depends on what is going to. But all are of reasonable length for their purpose.
+It is advisable not to misuse fields since there are some internal checks on the values. Use the custom fields instead. It is hard to say what the length of input fields is in characters as this depends on what is going to. But all are of reasonable length for their purpose.
 
 = Attributes =
 `wptournregedit`:
@@ -89,8 +91,8 @@ It is advisable not to misuse fields since there are some internal checks on the
 
 = Usage =
 
-
 == Installation ==
+
 1. In your wp-admin (WordPress dashboard), go to Plugins Menu > Add New
 2. Search for \'wp-tournament-registration\' in search field on top right.
 3. In the search results, click on \'Install Now\' button next to WP Tournament Registration.
@@ -104,6 +106,7 @@ You can also install the plugin manually by following these steps:
 5. Once the upload is finish, click on Activate.
 
 == Frequently Asked Questions ==
+
 = Where is the settings page? =
 
 No settings page at all! Everything is done with shortcodes.
