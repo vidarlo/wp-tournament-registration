@@ -69,6 +69,7 @@ It is advisable not to misuse fields since there are some internal checks on the
 
 `wptournreglist`:
 *`tournament_id` (required).
+*`approve` if set to any value the list shows all enries, otherwise the ones with a checked `approved` flag only.
 *`backlink` adds a backlink to the plugin\'s project page if set to any value.
 *`class` adds a space separated list of custom CSS classes to the form.
 *`css` adds a style attribute with custom CSS to the form.

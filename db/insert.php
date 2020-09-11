@@ -15,7 +15,7 @@ function wptournreg_insert_data() {
 	
 	foreach( $_POST as $field => $value ) {
 		
-		if ( $field == 'id' || $field == 'time' || $field == 'cc' || $field == 'touched' ) { continue; }
+		if ( $field == 'id' || $field == 'time' || $field == 'cc' || $field == 'touched'|| $field == 'ip' ) { continue; }
 		
 		if ( array_key_exists( $field, $scheme ) ) {
 				
@@ -44,6 +44,8 @@ function wptournreg_insert_data() {
 	
 	$fields[] = 'time';
 	$data[] = time();
+	$fields[] = 'ip';
+	$data[] = "'" . $_SERVER[ 'REMOTE_ADDR' ] . "'";
 	
 	return $wpdb->query( 'INSERT INTO ' . WP_TOURNREG_DATA_TABLE . '(' . implode( ', ', $fields ) . ') VALUES (' . implode( ', ', $data ) . ');' );
 }

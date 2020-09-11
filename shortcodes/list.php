@@ -9,6 +9,7 @@ function wptournreg_get_list( $atts = [] ) {
     $atts = array_change_key_case((array)$atts, CASE_LOWER);
 	
 	$a = shortcode_atts( array(
+		'approve' => null,
 		'backlink' => null,
 		'class' => null,
 		'css' => null,
@@ -25,6 +26,8 @@ function wptournreg_get_list( $atts = [] ) {
 		return sprintf( __( '%sERROR: Missing %s in shortcode %s!%s', 'wp-tournament-registration' ), '<strong class="wptournreg-error">', '<kbd>tournament_id</kbd>', '<kbd>wptournreglist</kbd>', '</strong>' );
 	}
 	
+	$approved = ( !empty ( $a[ 'approve' ] ) ) ? false : true;
+
 	if ( empty ( $a[ 'notsortable' ] ) ) {
 		
 		wp_enqueue_script( 'wptournregtablesorter' );
@@ -72,7 +75,7 @@ function wptournreg_get_list( $atts = [] ) {
 	
 	foreach( $result as $participant ) {
 		
-		if ( $participant->{ 'approved' } ) {
+		if ( $participant->{ 'approved' } || !$approved ) {
 		
 			$html .= '<tr><td>' . ++$count . '</td>';
 			
