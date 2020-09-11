@@ -3,7 +3,7 @@
 Contributors: archaeopath
 Tags: events, registration, event registration, tournament, tournaments, competition, competitions, sport, chess, hobby sport
 Requires at least: 5.3
-Tested up to: 5.4.1
+Tested up to: 5.5.1
 Requires PHP: 7.2
 Stable tag: 1.0.0
 License: GPLv2 or later
@@ -33,6 +33,7 @@ All these shortcodes are customizable through a set of optional attributes.
 * `fee_is_paid` [checkbox]:  self-explanatory.
 * `firstname` [text]: self-explanatory.
 * `id` [read-only]: an integer that serves as primary key and is incremented with every registration. Use it do separate entries if people register twice.
+* `ip` [read-only]: The remote IP of the submitter through `wptournregform`. May be useful for security checks.
 * `lastname` [text]: self-explanatory.
 * `message` [textarea]: self-explanatory
 * `phone1` [text]: self-explanatory
@@ -120,7 +121,9 @@ then you can provide a registration form in every language for the same tourname
 a site against others it is probably a good idea to namespace your tournament IDs somehow, eg. 
 `mysite_mytournamentid` 
 
+= Why does it work with JavaScript enabled ony? =
 
+WP Tournament Registration does some checks to avoid spam.
 
 == Changelog ==
 = 1.0.0 =

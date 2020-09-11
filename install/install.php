@@ -34,6 +34,7 @@ function wptournreg_install() {
 		postcode varchar(12) NOT NULL,
 		city varchar(32) NOT NULL,
 		address varchar(128) NOT NULL,
+		ip varchar(32) NOT NULL,
 		custom1 tinytext DEFAULT '' NOT NULL,
 		custom2 tinytext DEFAULT '' NOT NULL,
 		custom3 tinytext DEFAULT '' NOT NULL,
