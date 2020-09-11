@@ -88,7 +88,7 @@ function wptournreg_edit( $atts = [] ) {
 				
 				$html .= '<p><label for="' . $field . '"><kbd>' . $field . '</kbd></label>';
 				
-				if ( $field == 'id' ) { 
+				if ( $field == 'id' || $field == 'ip' ) { 
 				
 					$html .= $participant->{ $field };
 				}
