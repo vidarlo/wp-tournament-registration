@@ -9,6 +9,7 @@ function wptournreg_export( $atts = [], $content = null ) {
     $atts = array_change_key_case((array)$atts, CASE_LOWER);
 	
 	$a = shortcode_atts( array(
+		'all' => null,
 		'class' => null,
 		'css' => null,
 		'css_id' => null,
@@ -21,6 +22,8 @@ function wptournreg_export( $atts = [], $content = null ) {
 	
 	wp_enqueue_script( 'wptournreg' );
 	wp_enqueue_style( 'wptournreg' );
+	
+	$all = ( !empty ( $a[ 'all' ] ) ) ? true : false;
 	
 	/* error if tournament id is missing */
 	if ( empty ( $a[ 'tournament_id' ] ) ) {
@@ -65,7 +68,7 @@ function wptournreg_get_txt() {
 	
 	foreach( $result as $participant ) {
 		
-		if ( $participant->{ 'approved' } ) {
+		if ( $participant->{ 'approved' } || $all ) {
 		
 			$found = true;
 			

@@ -52,12 +52,13 @@ It is advisable not to misuse fields since there are some internal checks on the
 
 `wptournregexport`:
 *`tournament_id` (required).
+*`all` if set to any value the list shows all enries, otherwise the ones with a checked `approved` flag only.
 *`class` adds a space separated list of custom CSS classes to the form.
 *`css` adds a style attribute with custom CSS to the form.
 *`id` adds a custom CSS id to the form.
 *`fields_set` a comma-separated list of fields which get ignored if empty.
 *`filename` the name of the export file.
-*`format` a plain text string where all field names get replaced by the respective values.
+*`format` a plain text string where all field names preceded by a percent sign (`%fieldname`) get replaced by the respective field values.
 
 `wptournregform`:
 *`tournament_id` (required).
@@ -70,7 +71,7 @@ It is advisable not to misuse fields since there are some internal checks on the
 
 `wptournreglist`:
 *`tournament_id` (required).
-*`approve` if set to any value the list shows all enries, otherwise the ones with a checked `approved` flag only.
+*`all` if set to any value the list shows all enries, otherwise the ones with a checked `approved` flag only.
 *`backlink` adds a backlink to the plugin\'s project page if set to any value.
 *`class` adds a space separated list of custom CSS classes to the form.
 *`css` adds a style attribute with custom CSS to the form.
@@ -92,6 +93,21 @@ It is advisable not to misuse fields since there are some internal checks on the
 *`required` if set to any value the field is marked as required.
 
 = Usage =
+
+The first example is a registration form. Several `wptournregfield` shortcodes are wrapped by a `wptournregfield` one. You can put HTML elements between (fi. fieldsets) in order to design your form:
+`[wptournregform tournament_id="my_tournament" css_id="my_tournament" email="subscription@example.com"]<p>Red labels indicate required fields!</p><fieldset><legend>Öffentliche Daten</legend>[wptournregfield field="lastname" label="Family name" required="1" /][wptournregfield field="firstname" label="Christian name" required="1" /][wptournregfield field="affiliation" label="Club" required="1" placeholder="or 'free agent'" /][wptournregfield field="rating1" label="DWZ"  /]</fieldset><fieldset><legend>Your contact data (not to be published)</legend>[wptournregfield field="email" label="E-mail" /][wptournregfield field="phone1" label="Phone 1" required="1" /][wptournregfield field="phone2" label="Phone 2" /]</fieldset>[wptournregfield field="message" label="Your message" placeholder="Whatever you like to tell us." /][/wptournregform]`
+
+The next instance is an editor for the data of the tournament. The non-approved players are highlihted in the selection list:
+`[wptournregedit tournament_id="my_tournament" display_fields="approved,firstname,lastname,affiliation,email,id,time,ip,rating1,phone1,phone2,protected,custom1,message" /]`
+
+Next is a list view. Normally you will make an password restricted full list for internal use and a small one for the public. Only approved players are on view:
+`[wptournreglist tournament_id="my_tournament" display_fields="lastname,firstname,affiliation,email,phone1,phone2,message" headings="Last Name,First Name,Club,E-mail,Phone 1, Phone 2, Message" /]`
+
+The next shortcode exports all participants into a csv list which than the is loaded into a tournament manager app (Swiss-Chess in this case). here also non-approved players get exported:
+`[wptournregexport tournament_id="my_tournament" all="1" format='"%lastname%, %firstname%";"%affiliation%";"";"";"%rating1%";""' linebreak="1" filename="swiss-chess.txt"]Download Swiss-Chess list[/wptournregexport]`
+
+The following shortcode exports a list of all approved participants who have provided you with a mail address in a way you can directly copy and paste into a mail client:
+`[wptournregexport tournament_id="my_tournament" format='"%firstname% %lastname%" &lt;%email%&gt;,' fields_set="email" filename="mails.txt"]Download mail list (use BCC!)[/wptournregexport]`
 
 == Installation ==
 
