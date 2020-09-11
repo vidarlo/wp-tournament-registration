@@ -2,6 +2,8 @@
 
 *A WordPress plugin for registering players with tournaments*
 
+The plugin is currently under review by the WordPress developers of Auttomatic.
+
 ## License
 
 © 2020 Ingram Braun [https://ingram-braun.net/](https://ingram-braun.net/#ib_campaign=wptournreg&ib_medium=repository&ib_source=readme&ib_content=copyright)
