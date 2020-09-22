@@ -18,9 +18,9 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 */
 
 /* VERSIONS */
-define( "WP_TOURNREG_DB_VER", 2 );
+define( "WP_TOURNREG_DB_VER", 3 );
 define( "WP_TOURNREG_PLUGIN_VER", '1.0.0' );
-define( "WP_TOURNREG_TBSORT_VER", '2.32.2' );
+define( "WP_TOURNREG_TBSORT_VER", '2.31.3' );
 
 /* PATHES */
 define( "WP_TOURNREG_PLUGIN_PATH", plugin_dir_path( __FILE__ ) );
@@ -36,8 +36,8 @@ define( "WP_TOURNREG_SHORTCODE_PATH", WP_TOURNREG_PLUGIN_PATH . 'shortcodes' . D
 define( "WP_TOURNREG_ACTION_URL", esc_url( admin_url('admin-post.php') ) );
 define( "WP_TOURNREG_CSS_URL", plugins_url( 'assets/wptournreg.css', __FILE__ ) );
 define( "WP_TOURNREG_JS_URL", plugins_url( 'assets/wptournreg.js', __FILE__ ) );
-define( "WP_TOURNREG_TBSORTJS_URL", plugins_url( 'assets/tablesorter-master/js/jquery.tablesorter.js', __FILE__ ) );
-define( "WP_TOURNREG_TBSORTCSS_URL", plugins_url( 'assets/tablesorter-master/css/theme.default.css', __FILE__ ) );
+define( "WP_TOURNREG_TBSORTJS_URL", plugins_url( 'assets/jquery.tablesorter/js/jquery.tablesorter.min.js', __FILE__ ) );
+define( "WP_TOURNREG_TBSORTCSS_URL", plugins_url( 'assets/jquery.tablesorter/css/theme.default.min.css', __FILE__ ) );
 
 /* TABLE NAME */
 global $wpdb;
