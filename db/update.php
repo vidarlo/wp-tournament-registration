@@ -12,29 +12,56 @@ function wptournreg_update_data( ) {
 	$scheme = wptournreg_get_field_list();
 		
 	$values = [];
+	$placeholder = [];
 	foreach( $scheme as $field => $type ) {
 		
-		if ( $field == 'id' || $field == 'time' ) {
+		if ( $field == 'id' || $field == 'time' || $field == 'ip' || !array_key_exists( $field, $_POST ) ) {
+		}
+		else if ( $field == 'email' ) {
+			
+			$values[ $field ][ 'value' ] =  wptournreg_escape( sanitize_email( strip_tags( $_POST[ $field ] ) ) );
+			$values[ $field ][ 'placeholder'] = '%s';
+		}
+		else if ( $field == 'message' ) {
+			
+			$values[ $field ][ 'value' ] =  wptournreg_escape( sanitize_textarea_field( strip_tags( $_POST[ $field ] ) ) );
+			$values[ $field ][ 'placeholder'] = '%s';
 		}
 		else if ( preg_match( '/bool|int\(1\)/i', $type ) ) {
 			
-			$values[ $field ] = ( isset( $_POST[ $field ] ) ) ? 1 : 0;
+			$values[ $field ][ 'value' ] = ( isset( $_POST[ $field ] ) ) ? 1 : 0;
+			$values[ $field ][ 'placeholder'] = '%d';
 		}
 		else if ( preg_match( '/int\(/i', $type ) ) {
 			
-			$values[ $field ] = ( !empty( $_POST[ $field ] ) ) ? wptournreg_escape( $_POST[ $field ] ) : 'NULL';
-		}
-		else if ( array_key_exists( $field, $_POST ) ) {
+			if ( !empty( $_POST[ $field ] ) ) {
 			
-			$values[ $field ] =  "'" . wptournreg_escape( $_POST[ $field ] ) . "'";				
+				$values[ $field ][ 'value' ] = intval( sanitize_text_field( $_POST[ $field ] ) );
+				$values[ $field ][ 'placeholder'] = '%d';
+			}
+			else {
+				$values[ $field ][ 'placeholder'] = 'NULL';
+			}
+		}
+		else {
+			
+			$values[ $field ][ 'value' ] =  wptournreg_escape( sanitize_text_field( strip_tags( $_POST[ $field ] ) ) );
+			$values[ $field ][ 'placeholder'] = '%s';		
 		}
 	}
 	
 	$update = [];
+	$paceholders = [];
 	foreach( $values as $field => $value ) {
-		$update[] = "$field = $value";
+		
+		if ( $value[ 'placeholder' ] != 'NULL' ) {
+			
+			$update[] = $value[ 'value' ];
+		}
+		$placeholders[] = $field . ' = ' . $value[ 'placeholder' ];
 	}
+	$update[] = sanitize_text_field( $_POST[ 'id' ] );
 	
-	/* $wpdb->update and friends canm't set NULL values */
-	return $wpdb->query( 'UPDATE ' . WP_TOURNREG_DATA_TABLE . ' SET ' . implode( ', ', $update ) . ' WHERE id = ' . wptournreg_escape( $_POST[ 'id' ] ) . ';' );
+	/* $wpdb->update and friends can't set NULL values */
+	return $wpdb->query( $wpdb->prepare( 'UPDATE ' . WP_TOURNREG_DATA_TABLE . ' SET ' . implode( ', ', $placeholders ) . ' WHERE id = %d;' , $update ) );
 }
