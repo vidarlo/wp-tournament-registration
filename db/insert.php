@@ -12,52 +12,63 @@ function wptournreg_insert_data() {
 	global $wpdb;
 	$data = [];
 	$fields = [];
+	$placeholder = [];
 	
 	foreach( $_POST as $field => $value ) {
 		
 		if ( $field == 'id' || $field == 'time' || $field == 'cc' || $field == 'touched'|| $field == 'ip' ) { continue; }
 		
-		/*`no need for HTML in any field */
+		/* no need for HTML in any field */
 		$value = ( strip_tags( $value ) );
 		
 		if ( array_key_exists( $field, $scheme ) ) {
 				
 			if ( $field == 'email' ) {
 
-				$prepared = "'" . wptournreg_escape( sanitize_email( $value ) ) . "'";
+				$data[] = wptournreg_escape( sanitize_email( $value ) );
+				$placeholder[] = '%s';
 			}
 			else if ( $field == 'message' ) {
 				
-				$prepared = "'" . wptournreg_escape( sanitize_textarea_field( $value ) ) . "'";
+				$data[] = wptournreg_escape( sanitize_textarea_field( $value ) );
+				$placeholder[] = '%s';
 			}
 			else if ( preg_match( '/char|string|text/i', $scheme[ $field ] ) ) {
 				
-				$prepared = "'" . wptournreg_escape( sanitize_text_field( $value ) ) . "'";
+				$data[] = wptournreg_escape( sanitize_text_field( $value ) );
+				$placeholder[] = '%s';
 			}
 			else if ( preg_match( '/bool|int\(1\)/i', $scheme[ $field ] ) ) {
 				
-				$prepared = 1;
+				$data[] = 1;
+				$placeholder[] = '%d';
 			}
 			else if ( preg_match( '/int\(/i', $scheme[ $field ] ) ) {
 				
-				$val = sanitize_text_field( $value );
-				$prepared = (  preg_match( '/\d+/', $val ) ) ? intval( $val ) : 'NULL';
+				if ( preg_match( '/\d+/', $value ) ) {
+					
+					$data[] =  intval( sanitize_text_field( $value ) );
+					$placeholder[] = '%d';
+				}
+				else { continue; } // NULL is default
 			}
 			else {
 				
-				$prepared = "'" . wptournreg_escape( sanitize_text_field( $value ) ) . "'";
+				$data[] = wptournreg_escape( sanitize_text_field( $value ) );
+				$placeholder[] = '%s';
 				trigger_error( 'Unknown field type ' . $scheme[ $field ] , E_USER_NOTICE );
 			}
 			
 			$fields[] = $field;
-			$data[] = $prepared;
 		}
 	}
 	
 	$fields[] = 'time';
 	$data[] = time();
+	$placeholder[] = '%d';
 	$fields[] = 'ip';
 	$data[] = "'" . $_SERVER[ 'REMOTE_ADDR' ] . "'";
+	$placeholder[] = '%s';
 	
-	return $wpdb->query( 'INSERT INTO ' . WP_TOURNREG_DATA_TABLE . '(' . implode( ', ', $fields ) . ') VALUES (' . implode( ', ', $data ) . ');' );
+	return $wpdb->query( $wpdb->prepare( 'INSERT INTO ' . WP_TOURNREG_DATA_TABLE . '(' . implode( ', ', $fields ) . ') VALUES (' . implode( ', ', $placeholder ) . ');', $data ) );
 }
