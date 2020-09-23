@@ -106,7 +106,7 @@ Next is a list view. Normally you will make an password restricted full list for
 The next shortcode exports all participants into a csv list which than the is loaded into a tournament manager app (Swiss-Chess in this case). here also non-approved players get exported:
 `[wptournregexport tournament_id="my_tournament" all="1" format='"%lastname%, %firstname%";"%affiliation%";"";"";"%rating1%";""' linebreak="1" filename="swiss-chess.txt"]Download Swiss-Chess list[/wptournregexport]`
 
-The following shortcode exports a list of all approved participants who have provided you with a mail address in a way you can directly copy and paste into a mail client:
+The following shortcode exports a list of all approved participants who have provided you with a mail address in a way you can directly copy and paste into a mail client. Remark the HTML entities for escaped characters:
 `[wptournregexport tournament_id="my_tournament" format='"%firstname% %lastname%" &lt;%email%&gt;,' fields_set="email" filename="mails.txt"]Download mail list (use BCC!)[/wptournregexport]`
 
 == Installation ==

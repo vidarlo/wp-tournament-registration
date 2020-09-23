@@ -19,12 +19,12 @@ function wptournreg_update_data( ) {
 		}
 		else if ( $field == 'email' ) {
 			
-			$values[ $field ][ 'value' ] =  wptournreg_escape( sanitize_email( strip_tags( $_POST[ $field ] ) ) );
+			$values[ $field ][ 'value' ] =  wptournreg_escape( sanitize_email( $_POST[ $field ] ) );
 			$values[ $field ][ 'placeholder'] = '%s';
 		}
 		else if ( $field == 'message' ) {
 			
-			$values[ $field ][ 'value' ] =  wptournreg_escape( sanitize_textarea_field( strip_tags( $_POST[ $field ] ) ) );
+			$values[ $field ][ 'value' ] =  wptournreg_escape( sanitize_textarea_field( $_POST[ $field ] ) );
 			$values[ $field ][ 'placeholder'] = '%s';
 		}
 		else if ( preg_match( '/bool|int\(1\)/i', $type ) ) {
@@ -45,7 +45,7 @@ function wptournreg_update_data( ) {
 		}
 		else {
 			
-			$values[ $field ][ 'value' ] =  wptournreg_escape( sanitize_text_field( strip_tags( $_POST[ $field ] ) ) );
+			$values[ $field ][ 'value' ] =  wptournreg_escape( sanitize_text_field( $_POST[ $field ] ) );
 			$values[ $field ][ 'placeholder'] = '%s';		
 		}
 	}

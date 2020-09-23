@@ -86,7 +86,7 @@ function wptournreg_get_txt() {
 			
 			if ( $found ) {
 			
-				$row = $_POST[ 'format' ];
+				$row = sanitize_text_field( $_POST[ 'format' ] );
 				
 				foreach( $participant as $field => $value ) {
 					

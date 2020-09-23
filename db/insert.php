@@ -18,9 +18,6 @@ function wptournreg_insert_data() {
 		
 		if ( $field == 'id' || $field == 'time' || $field == 'cc' || $field == 'touched'|| $field == 'ip' ) { continue; }
 		
-		/* no need for HTML in any field */
-		$value = ( strip_tags( $value ) );
-		
 		if ( array_key_exists( $field, $scheme ) ) {
 				
 			if ( $field == 'email' ) {
