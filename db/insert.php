@@ -17,11 +17,22 @@ function wptournreg_insert_data() {
 		
 		if ( $field == 'id' || $field == 'time' || $field == 'cc' || $field == 'touched'|| $field == 'ip' ) { continue; }
 		
+		/*`no need for HTML in any field */
+		$value = ( strip_tags( $value ) );
+		
 		if ( array_key_exists( $field, $scheme ) ) {
 				
-			if ( preg_match( '/char|string|text/i', $scheme[ $field ] ) ) {
+			if ( $field == 'email' ) {
+
+				$prepared = "'" . wptournreg_escape( sanitize_email( $value ) ) . "'";
+			}
+			else if ( $field == 'message' ) {
 				
-				$prepared = "'" . wptournreg_escape( $value ) . "'";
+				$prepared = "'" . wptournreg_escape( sanitize_textarea_field( $value ) ) . "'";
+			}
+			else if ( preg_match( '/char|string|text/i', $scheme[ $field ] ) ) {
+				
+				$prepared = "'" . wptournreg_escape( sanitize_text_field( $value ) ) . "'";
 			}
 			else if ( preg_match( '/bool|int\(1\)/i', $scheme[ $field ] ) ) {
 				
@@ -29,16 +40,17 @@ function wptournreg_insert_data() {
 			}
 			else if ( preg_match( '/int\(/i', $scheme[ $field ] ) ) {
 				
-				$val = wptournreg_escape( $value );
+				$val = sanitize_text_field( $value );
 				$prepared = (  preg_match( '/\d+/', $val ) ) ? intval( $val ) : 'NULL';
 			}
 			else {
 				
-				$prepared = wptournreg_escape( $value );
+				$prepared = "'" . wptournreg_escape( sanitize_text_field( $value ) ) . "'";
+				trigger_error( 'Unknown field type ' . $scheme[ $field ] , E_USER_NOTICE );
 			}
 			
-			array_push( $fields, $field );
-		    array_push( $data, $prepared );
+			$fields[] = $field;
+			$data[] = $prepared;
 		}
 	}
 	
