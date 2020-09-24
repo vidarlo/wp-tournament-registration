@@ -46,9 +46,9 @@ function wptournreg_get_list( $atts = [] ) {
 	$protected_fields = preg_split( '/\s*,\s*/', $a[ 'protected_fields' ]);
 	
 	/* add custom CSS */
-	$css = ( empty ( $a{ 'css' } ) ) ? '' : ' style="' . $a{ 'css' } . '"';
-	$class = ' class="wptournreg-list' . ( empty ( $a{ 'class' } ) ? '' : ' ' . $a{ 'class' } ) . '"';
-	$id = ( empty ( $a{ 'css_id' } ) ) ? '' : ' id="' . $a{ 'css_id' } . '"';
+	$css = ( empty ( $a{ 'css' } ) ) ? '' : ' style="' . trim( esc_attr( $a{ 'css' } ) ) . '"';
+	$class = ' class="wptournreg-list' . ( empty ( $a{ 'class' } ) ? '' : ' ' . trim( esc_attr( $a{ 'class' } ) ) ). '"';
+	$id = ( empty ( $a{ 'css_id' } ) ) ? '' : ' id="' . trim( esc_attr( $a{ 'css_id' } ) ). '"';
 	
 	
 	/* Print table */
@@ -66,7 +66,7 @@ function wptournreg_get_list( $atts = [] ) {
 	
 	foreach( $headings as $th ) {
 		
-		$html .= "<th>$th</th>";
+		$html .= '<th>' . esc_html( $th ) . '</th>';
 	}
 	
 	$html .= '</tr></thead><tbody>';
@@ -102,7 +102,11 @@ function wptournreg_get_list( $atts = [] ) {
 					}
 					else if ( strcmp( $field, 'email' ) === 0 ) {
 						
-						$value = '<a href="mailto:' . $participant->{ $field } . '">' . $participant->{ $field } . '</a>';
+						if ( strpos( $participant->{ $field }, '@' ) !== false ) {
+							
+							$value = '<a href="mailto:' . esc_attr( $participant->{ $field } ) . '">' . esc_html( $participant->{ $field } ) . '</a>';
+						}
+						else { $value = ''; }
 					}
 					else if ( strcmp( $field, 'time' ) === 0 ) {
 						
@@ -110,7 +114,7 @@ function wptournreg_get_list( $atts = [] ) {
 					}
 					else {
 						
-						$value = $participant->{ $field };
+						$value = esc_html( $participant->{ $field } );
 					}
 				
 					$html .= '<td>' . $value . '</td>';
