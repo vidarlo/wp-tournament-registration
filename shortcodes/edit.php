@@ -80,7 +80,7 @@ function wptournreg_edit( $atts = [] ) {
 	
 	foreach( $result as $participant ) {
 		
-		$html .= '<form id="wptournregedit-participant' . $participant->{ 'id' } . '" class="wptournregedit-participant" method="POST" action="' . WP_TOURNREG_ACTION_URL . '"><input type="hidden" name="id" value="' . $participant->{ 'id' } . '">';
+		$html .= '<form id="wptournregedit-participant' . esc_attr( $participant->{ 'id' } ) . '" class="wptournregedit-participant" method="POST" action="' . WP_TOURNREG_ACTION_URL . '"><input type="hidden" name="id" value="' . esc_attr( $participant->{ 'id' } ) . '">';
 		
 		foreach( $fields as $field ) {
 			
@@ -136,7 +136,7 @@ function wptournreg_edit( $atts = [] ) {
 		foreach( [ 'Delete', 'Are you sure?', 'Cannot restore!' ] as $label ) {
 			
 			$html .= '<input type="checkbox" name="delete' . ++$count . '">';
-			$html .= '<span class="wptournregedit-delcheck">' . __( $label, 'wp-tournament-registration' ) . '</span>';
+			$html .= '<span class="wptournregedit-delcheck">' . __( esc_html( $label ), 'wp-tournament-registration' ) . '</span>';
 		}
 		
 		$html .= '</fieldset><input type="hidden" name="action" value="wptournreg_edit_participant"><input type="submit"></form>';
