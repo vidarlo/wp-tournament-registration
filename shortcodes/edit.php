@@ -66,7 +66,7 @@ function wptournreg_edit( $atts = [] ) {
 	
 	foreach( $names as $participant => $id ) {
 
-		$html .= '<option' . $approved[ $participant ] . ' value="#wptournregedit-participant' . $id . '">' . $participant . ' #' . $id . '</option>';
+		$html .= '<option' . $approved[ $participant ] . ' value="#wptournregedit-participant' . esc_attr( $id ) . '">' . esc_html( $participant ) . ' #' . esc_html( $id ) . '</option>';
 	}
 	
 	$html .= '</select></form>';
@@ -86,11 +86,11 @@ function wptournreg_edit( $atts = [] ) {
 			
 			if ( array_key_exists( $field, $scheme ) ) {
 				
-				$html .= '<p><label for="' . $field . '"><kbd>' . $field . '</kbd></label>';
+				$html .= '<p><label for="' . esc_attr( $field ) . '"><kbd>' . esc_html( $field ) . '</kbd></label>';
 				
 				if ( $field == 'id' || $field == 'ip' ) { 
 				
-					$html .= $participant->{ $field };
+					$html .= esc_html( $participant->{ $field } );
 				}
 				else if ( $field == 'time' ) { 
 				
@@ -98,31 +98,31 @@ function wptournreg_edit( $atts = [] ) {
 				}
 				else if ( $field == 'email' ) {
 		
-					$html .= '<input type="email" name="email" value="' . $participant->{ 'email' } . '" size="' . $bigsize . '">';
+					$html .= '<input type="email" name="email" value="' . esc_attr( $participant->{ 'email' } ) . '" size="' . $bigsize . '">';
 				}
 				else if ( preg_match( '/^phone\d+/i', $scheme[ $field ] ) ) {
 					
-					$html .= '<input type="tel" value="' . $participant->{ $field } . '" name="' . $field . '" size="' . $mallsize . '">';
+					$html .= '<input type="tel" value="' . esc_attr( $participant->{ 'email' } ) . '" name="' . esc_attr( $field ) . '" size="' . $mallsize . '">';
 				}
 				else if ( $scheme[ $field ] == 'text' ) {
 					
-					$html .= '<textarea cols="' . $bigsize . '" rows="8" name="' . $field . '"></textarea>';
+					$html .= '<textarea cols="' . $bigsize . '" rows="8" name="' . esc_attr( $field ) . '"></textarea>';
 				}
 				else if ( preg_match( '/char|string|text/i', $scheme[ $field ] ) ) {
 					
-					$html .= '<input type="text" value="' . $participant->{ $field } . '" name="' . $field . '" size="' . $bigsize . '">';
+					$html .= '<input type="text" value="' . esc_attr( $participant->{ $field } ) . '" name="' . esc_attr( $field ) . '" size="' . $bigsize . '">';
 				}
 				else if ( preg_match( '/bool|int\(1\)/i', $scheme[ $field ] ) ) {
 					
-					$html .= '<input type="checkbox"' . ( $participant->{ $field } == 1 ? ' checked' : '' ) . ' name="' . $field . '">';
+					$html .= '<input type="checkbox"' . ( $participant->{ $field } == 1 ? ' checked' : '' ) . ' name="' . esc_attr( $field ) . '">';
 				}
 				else if ( preg_match( '/int\(/i', $scheme[ $field ] ) ) {
 					
-					$html .= '<input type="text" value="' . $participant->{ $field } .'"' . ' name="' . $field . '" size="' . $smallsize . '">';
+					$html .= '<input type="text" value="' . esc_attr( $participant->{ $field } ) .'"' . ' name="' . esc_attr( $field ) . '" size="' . $smallsize . '">';
 				}
 				else {
 					
-					return sprintf( __( '%sERROR: Missing format for field %s!%s', 'wp-tournament-registration' ), '<strong class="wptournreg-error">', "<kbd>$field</kbd>", '</strong>' );
+					return sprintf( __( '%sERROR: Missing format for field %s!%s', 'wp-tournament-registration' ), '<strong class="wptournreg-error">', '<kbd>' . esc_attr( $field ) . '</kbd>', '</strong>' );
 				}
 				
 				$html .= '</p>';
