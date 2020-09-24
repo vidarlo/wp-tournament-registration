@@ -40,10 +40,10 @@ function wptournreg_export( $atts = [], $content = null ) {
 	$id = ( empty ( $a{ 'css_id' } ) ) ? '' : ' id="' . trim( esc_attr( $a{ 'css_id' } ) ) . '"';
 	
 	/* txt structure */
-	$format = "<input type='hidden' name='format' value='" . $a[ 'format' ] . "'>";
-	$linebreak = '<input type="hidden" name="linebreak" value="' . $a[ 'linebreak' ] . '">';
-	$fields_set = "<input type='hidden' name='fields_set' value='" . $a[ 'fields_set' ] . "'>";
-	$filename= '<input type="hidden" name="filename" value="' . $a[ 'filename' ] . '">';
+	$format = "<input type='hidden' name='format' value='" . esc_attr( $a[ 'format' ] ) . "'>";
+	$linebreak = '<input type="hidden" name="linebreak" value="' . esc_attr( $a[ 'linebreak' ] ) . '">';
+	$fields_set = "<input type='hidden' name='fields_set' value='" . esc_attr( $a[ 'fields_set' ] ) . "'>";
+	$filename= '<input type="hidden" name="filename" value="' . esc_attr( $a[ 'filename' ] ) . '">';
 	
 	/* set action URL */
 	$action = ' method="POST" action="' . WP_TOURNREG_ACTION_URL . '"';
