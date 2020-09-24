@@ -104,10 +104,10 @@ Next is a list view. Normally you will make an password restricted full list for
 `[wptournreglist tournament_id="my_tournament" display_fields="lastname,firstname,affiliation,email,phone1,phone2,message" headings="Last Name,First Name,Club,E-mail,Phone 1, Phone 2, Message" /]`
 
 The next shortcode exports all participants into a csv list which than the is loaded into a tournament manager app (Swiss-Chess in this case). Here also non-approved players get exported. Wrap the field names in sections signs (`§`) in order to output the respective value.
-`[wptournregexport tournament_id="my_tournament" all="1" format='"%lastname%, %firstname%";"%affiliation%";"";"";"%rating1%";""' linebreak="1" filename="swiss-chess.txt"]Download Swiss-Chess list[/wptournregexport]`
+`[wptournregexport tournament_id="my_tournament" all="1" format='"§lastname§, §firstname§";"§affiliation§";"";"";"§rating1§";""' linebreak="1" filename="swiss-chess.txt"]Download Swiss-Chess list[/wptournregexport]`
 
 The following shortcode exports a list of all approved participants who have provided you with a mail address in a way you can directly copy and paste into a mail client. See FAQ for issues with some characters!
-`[wptournregexport tournament_id="my_tournament" format='"%firstname% %lastname%" &lt;%email%&gt;,' fields_set="email" filename="mails.txt"]Download mail list (use BCC!)[/wptournregexport]`
+`[wptournregexport tournament_id="my_tournament" format='"§firstname§ §lastname§" LOWER_THAN§email§>,' fields_set="email" filename="mails.txt"]Download mail list (use BCC!)[/wptournregexport]`
 
 == Installation ==
 
