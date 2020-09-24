@@ -103,10 +103,10 @@ The next instance is an editor for the data of the tournament. The non-approved 
 Next is a list view. Normally you will make an password restricted full list for internal use and a small one for the public. Only approved players are on view:
 `[wptournreglist tournament_id="my_tournament" display_fields="lastname,firstname,affiliation,email,phone1,phone2,message" headings="Last Name,First Name,Club,E-mail,Phone 1, Phone 2, Message" /]`
 
-The next shortcode exports all participants into a csv list which than the is loaded into a tournament manager app (Swiss-Chess in this case). here also non-approved players get exported:
+The next shortcode exports all participants into a csv list which than the is loaded into a tournament manager app (Swiss-Chess in this case). Here also non-approved players get exported. Wrap the field names in sections signs (`§`) in order to output the respective value.
 `[wptournregexport tournament_id="my_tournament" all="1" format='"%lastname%, %firstname%";"%affiliation%";"";"";"%rating1%";""' linebreak="1" filename="swiss-chess.txt"]Download Swiss-Chess list[/wptournregexport]`
 
-The following shortcode exports a list of all approved participants who have provided you with a mail address in a way you can directly copy and paste into a mail client. Remark the HTML entities for escaped characters:
+The following shortcode exports a list of all approved participants who have provided you with a mail address in a way you can directly copy and paste into a mail client. See FAQ for issues with some characters!
 `[wptournregexport tournament_id="my_tournament" format='"%firstname% %lastname%" &lt;%email%&gt;,' fields_set="email" filename="mails.txt"]Download mail list (use BCC!)[/wptournregexport]`
 
 == Installation ==
@@ -124,6 +124,11 @@ You can also install the plugin manually by following these steps:
 5. Once the upload is finish, click on Activate.
 
 == Frequently Asked Questions ==
+
+= How to escape characters? =
+
+The shortcode is rendered as HTML which means that there are some protected characters. Fi. if you need tabsops, provide them as HTML entities (`&#9;` in this case).
+A special issue is the `<`. The format method strips HTML tags (and some other things) in order to avoid injection of evil scripts, even as HTML entity. Use a distinct character string instead and replace it in any text editor after download.
 
 = Where is the settings page? =
 

@@ -86,11 +86,11 @@ function wptournreg_get_txt() {
 			
 			if ( $found ) {
 			
-				$row = sanitize_text_field( $_POST[ 'format' ] );
+				$row = sanitize_textarea_field( $_POST[ 'format' ] );
 				
 				foreach( $participant as $field => $value ) {
 					
-					$row = str_replace( "%$field%", $value, $row );
+					$row = str_replace( '§' . $field . '§', $value, $row );
 					$row = str_replace( '\"', '"', $row );
 					$row = str_replace( "\'", "'", $row );
 				}
@@ -102,7 +102,7 @@ function wptournreg_get_txt() {
 	
 	header('Content-Type: text/plain');
 	header('Content-Disposition: attachment; filename="' . $_POST[ 'filename' ] . '"');
-	
+
 	echo implode( $linebreak, $formatted );
 }
 add_action( 'admin_post_nopriv_wptournreg_get_txt', 'wptournreg_get_txt' );
