@@ -34,9 +34,9 @@ function wptournreg_get_fields( $atts = [] ) {
 	$disabled = ( !isset( $a[ 'disabled' ] ) ) ? '' : ' disabled';
 	
 	/* add custom CSS */
-	$css = ( empty ( $a[ 'css' ] ) ) ? '' : ' style="' . $a[ 'css' ] . '"';
-	$class = ' class="wptournreg-field' . ( !isset( $a[ 'required' ] ) ? '' : ' wptourn-required' ) . ( empty ( $a[ 'class' ] ) ? '' : ' ' . $a[ 'class' ] ) . '"';
-	$id = ( empty ( $a[ 'css_id' ] ) ) ? '' : ' id="' . $a[ 'css_id' ] . '"';
+	$css = ( empty ( $a[ 'css' ] ) ) ? '' : ' style="' . trim( esc_attr( $a[ 'css' ] ) ) . '"';
+	$class = ' class="wptournreg-field' . ( !isset( $a[ 'required' ] ) ? '' : ' wptourn-required' ) . ( empty ( $a[ 'class' ] ) ? '' : ' ' . trim( esc_attr( $a[ 'class' ] ) ) ) . '"';
+	$id = ( empty ( $a[ 'css_id' ] ) ) ? '' : ' id="' . trim( esc_attr( $a[ 'css_id' ] ) ) . '"';
 	
 	/* sizes */
 	$bigsize = 50;

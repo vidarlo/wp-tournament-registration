@@ -35,9 +35,9 @@ function wptournreg_export( $atts = [], $content = null ) {
 	}
 	
 	/* add custom CSS */
-	$css = ( empty ( $a{ 'css' } ) ) ? '' : ' style="' . $a{ 'css' } . '"';
-	$class = ' class="wptournreg-txt' . ( empty ( $a{ 'class' } ) ? '' :  ' ' . $a{ 'class' } ) . '"';
-	$id = ( empty ( $a{ 'css_id' } ) ) ? '' : ' id="' . $a{ 'css_id' } . '"';
+	$css = ( empty ( $a{ 'css' } ) ) ? '' : ' style="' . trim( esc_attr( $a{ 'css' } ) ) . '"';
+	$class = ' class="wptournreg-txt' . ( empty ( $a{ 'class' } ) ? '' :  ' ' . trim( esc_attr( $a{ 'class' } ) ) ) . '"';
+	$id = ( empty ( $a{ 'css_id' } ) ) ? '' : ' id="' . trim( esc_attr( $a{ 'css_id' } ) ) . '"';
 	
 	/* txt structure */
 	$format = "<input type='hidden' name='format' value='" . $a[ 'format' ] . "'>";

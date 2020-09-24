@@ -42,9 +42,9 @@ function wptournreg_get_form( $atts = [], $content = null ) {
 	$disabled = ( !isset( $a[ 'disabled' ] ) ) ? '' : ' disabled';
 	
 	/* add custom CSS */
-	$css = ( empty ( $a{ 'css' } ) ) ? '' : ' style="' . trim ( $a[ 'css' ] ) . '"';
-	$class = ' class="wptournreg-form' . ( empty ( $a[ 'class' ] ) ? '' :  ' ' . trim( $a[ 'class' ] ) ) . '"';
-	$id = ( empty ( $a{ 'css_id' } ) ) ? '' : ' id="' . trim( $a[ 'css_id' ] ) . '"';
+	$css = ( empty ( $a{ 'css' } ) ) ? '' : ' style="' . trim( esc_attr( $a[ 'css' ] ) ) . '"';
+	$class = ' class="wptournreg-form' . ( empty ( $a[ 'class' ] ) ? '' :  ' ' . trim( esc_attr($a[ 'class' ] ) ) ) . '"';
+	$id = ( empty ( $a{ 'css_id' } ) ) ? '' : ' id="' . trim( esc_attr( $a[ 'css_id' ] ) ) . '"';
 	
 	$backlink = '';
 	if ( !empty ( $a{ 'backlink' } ) ) {
