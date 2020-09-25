@@ -2,7 +2,7 @@
 
 *A WordPress plugin for registering players with tournaments*
 
-The plugin is currently under review by the WordPress developers of Auttomatic.
+The plugin has passed the review by the WordPress developers of Auttomatic successfully and will be available through their plugin repository in short.
 
 ## License
 
