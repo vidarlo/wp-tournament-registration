@@ -14,18 +14,16 @@ jQuery( '.wptournregedit-select' ).on( 'change', function() {
 jQuery( '.wptournregedit-participant').each( function() {
 	
 	let form = jQuery( this );
-	let select = jQuery( '.wptournregedit-select>[value=#wptournregedit-participant' + form.find( '[name=id]' ).val() + ']' );
+	let select = jQuery( '.wptournregedit-select>[value="#wptournregedit-participant' + form.find( '[name=id]' ).val() + '"]' );
 	form.find( '[name=approved]' ).on( 'change', function() {
 		
 		if ( jQuery( this ).is( ':checked' ) ) {
 			
 			select.removeClass( 'wptournregedit-not-approved' );
-			console.log("REMOVED");
 		}
 		else {
 			
 			select.addClass( 'wptournregedit-not-approved' );
-			console.log("SAVED");
 		}
 	});
 });
