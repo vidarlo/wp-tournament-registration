@@ -40,20 +40,20 @@ function wptournreg_edit( $atts = [] ) {
 			
 			if ( strlen( $participant->{ 'firstname' } ) > 0  ) {
 				
-				$name = $participant->{ 'lastname' } . ', ' . $participant->{ 'firstname' };
+				$name = $participant->{ 'lastname' } . ', ' . $participant->{ 'firstname' } . ' #' . $participant->{ 'id' };
 			}
 			else {
 				
-				$name = $participant->{ 'lastname' };
+				$name = $participant->{ 'lastname' } . ' #' . $participant->{ 'id' };
 			}
 		}
 		else if ( strlen( $participant->{ 'firstname' } ) > 0  ) {
 			
-			$name = $participant->{ 'firstname' };
+			$name = $participant->{ 'firstname' } . ' #' . $participant->{ 'id' };
 		}
 		else {
 			
-			$name = $id;
+			$name = '#' . $participant->{ 'id' };
 		}
 				
 		$approved[ $name ] = ( $participant->{ 'approved' } ) ? '' : ' class="wptournregedit-not-approved"';
@@ -66,7 +66,7 @@ function wptournreg_edit( $atts = [] ) {
 	
 	foreach( $names as $participant => $id ) {
 
-		$html .= '<option' . $approved[ $participant ] . ' value="#wptournregedit-participant' . esc_attr( $id ) . '">' . esc_html( $participant ) . ' #' . esc_html( $id ) . '</option>';
+		$html .= '<option' . $approved[ $participant ] . ' value="#wptournregedit-participant' . esc_attr( $id ) . '">' . esc_html( $participant ) . '</option>';
 	}
 	
 	$html .= '</select></form>';
