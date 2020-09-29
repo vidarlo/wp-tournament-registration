@@ -1,7 +1,7 @@
 
 === WP Tournament Registration ===
 Contributors: archaeopath
-Tags: events, registration, event registration, tournament, tournaments, competition, competitions, sport, chess, hobby sport
+Tags: events, registration, event registration, competition, tournament, tournaments, competitions, sport, chess, hobby sport
 Requires at least: 5.3
 Tested up to: 5.5.1
 Requires PHP: 7.0
@@ -14,7 +14,7 @@ A simple but highly configurable tournament registration form providing shortcod
 
 == Description ==
 
-WP Tournament Registration is a plugin that provides shortcodes intended for registering players with hobby sport events. As a matter of fact, it was made for the championship of my [local chess club](https://schach-goettingen.de/).There are four shortcodes for different views:
+WP Tournament Registration is a plugin that provides shortcodes intended for registering players with hobby sport events. As a matter of fact, it was made for the championship of my [local chess club](https://schach-goettingen.de/). There are four shortcodes for different views:
 
 * `[wptournregedit tournament_id=\"myID\" /]` is an editor for the players\' data.
 * `[wptournregexport tournament_id=\"myID\"]...[/wptournregexport]` is a plain text export filter
@@ -123,6 +123,12 @@ You can also install the plugin manually by following these steps:
 3. Click the \'Upload Plugin\' button at the top.
 4. Upload the zip file you downloaded in Step 1.
 5. Once the upload is finish, click on Activate.
+
+== Screenshots ==
+
+1. The input form
+2. The editor
+3. List view and two export buttons for different formats
 
 == Frequently Asked Questions ==
 

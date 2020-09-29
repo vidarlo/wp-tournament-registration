@@ -64,7 +64,7 @@ function wptournreg_insert_data() {
 	$data[] = time();
 	$placeholder[] = '%d';
 	$fields[] = 'ip';
-	$data[] = "'" . $_SERVER[ 'REMOTE_ADDR' ] . "'";
+	$data[] = $_SERVER[ 'REMOTE_ADDR' ];
 	$placeholder[] = '%s';
 	
 	return $wpdb->query( $wpdb->prepare( 'INSERT INTO ' . WP_TOURNREG_DATA_TABLE . '(' . implode( ', ', $fields ) . ') VALUES (' . implode( ', ', $placeholder ) . ');', $data ) );
