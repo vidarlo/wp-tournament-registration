@@ -8,6 +8,7 @@ Requires PHP: 7.0
 Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Donate link: https://ingram-braun.net/erga/donations/
 
 A simple but highly configurable tournament registration form providing shortcodes for form, list, editor and export views. It is mainly intended for registering players with hobby sport events.
 
