@@ -124,6 +124,8 @@ You can also install the plugin manually by following these steps:
 4. Upload the zip file you downloaded in Step 1.
 5. Once the upload is finish, click on Activate.
 
+The development repository is hosted on [GitHub](https://github.com/CarlOrff/wp-tournament-registration).
+
 == Screenshots ==
 
 1. The input form
@@ -132,10 +134,10 @@ You can also install the plugin manually by following these steps:
 
 == Frequently Asked Questions ==
 
-= How to escape characters? =
+= How to escape characters in export formats? =
 
 The shortcode is rendered as HTML which means that there are some protected characters. Fi. if you need tabsops, provide them as HTML entities (`&#9;` in this case).
-A special issue is the `<`. The format method strips HTML tags (and some other things) in order to avoid injection of evil scripts, even as HTML entity. Use a distinct character string instead and replace it in any text editor after download.
+A special issue is the `<`. The format method strips HTML tags (and some other things) in order to avoid injection of evil scripts, even as HTML entity. `LOWER_THAN` will be substituded by an `<`.
 
 = Where is the settings page? =
 

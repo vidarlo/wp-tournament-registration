@@ -93,6 +93,7 @@ function wptournreg_get_txt() {
 					$row = str_replace( '§' . $field . '§', esc_html( $value ), $row );
 					$row = str_replace( '\"', '"', $row );
 					$row = str_replace( "\'", "'", $row );
+					$row = str_replace( 'LOWER_THAN', "<", $row );
 				}
 				
 				$formatted[] = $row;

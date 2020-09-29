@@ -4,6 +4,10 @@
 
 The plugin has passed the review by the WordPress developers of Auttomatic successfully and will be available through their plugin repository in short.
 
+## Installation and Usage
+
+Head over to WordPress' plugin repository [WP Tournament Registration](https://wordpress.org/plugins/wp-tournament-registration/) or study the `readme.txt` file.
+
 ## License
 
 © 2020 Ingram Braun [https://ingram-braun.net/](https://ingram-braun.net/#ib_campaign=wptournreg&ib_medium=repository&ib_source=readme&ib_content=copyright)
