@@ -33,7 +33,7 @@ All these shortcodes are customizable through a set of optional attributes.
 * `email` [text]: self-explanatory.
 * `fee_is_paid` [checkbox]:  self-explanatory.
 * `firstname` [text]: self-explanatory.
-* `id` [read-only]: an integer that serves as primary key and is incremented with every registration. Use it do separate entries if people register twice.
+* `id` [read-only]: an integer that serves as primary key and is incremented with every registration. Use it to separate entries if people register twice.
 * `ip` [read-only]: The remote IP of the submitter through `wptournregform`. May be useful for security checks.
 * `lastname` [text]: self-explanatory.
 * `message` [textarea]: self-explanatory
@@ -66,7 +66,7 @@ It is advisable not to misuse fields since there are some internal checks on the
 `wptournregform`:
 
 * `tournament_id` (required).
-* `backlink` adds a backlink to the plugin\'s project page.
+* `backlink` adds a backlink to the plugin's project page.
 * `class` adds a space separated list of custom CSS classes to the form.
 * `css` adds a style attribute with custom CSS to the form.
 * `id` adds a custom CSS id to the form.
@@ -77,7 +77,7 @@ It is advisable not to misuse fields since there are some internal checks on the
 
 * `tournament_id` (required).
 * `all` if set to any value the list shows all enries, otherwise the ones with a checked `approved` flag only.
-* `backlink` adds a backlink to the plugin\'s project page if set to any value.
+* `backlink` adds a backlink to the plugin's project page if set to any value.
 * `class` adds a space separated list of custom CSS classes to the form.
 * `css` adds a style attribute with custom CSS to the form.
 * `id` adds a custom CSS id to the list.
@@ -123,14 +123,14 @@ The following shortcode exports a list of all approved participants who have pro
 == Installation ==
 
 1. In your wp-admin (WordPress dashboard), go to Plugins Menu > Add New
-2. Search for \'wp-tournament-registration\' in search field on top right.
-3. In the search results, click on \'Install Now\' button next to WP Tournament Registration.
+2. Search for 'wp-tournament-registration' in search field on top right.
+3. In the search results, click on 'Install Now' button next to WP Tournament Registration.
 4. Once the installation is complete, click Activate button.
 
 You can also install the plugin manually by following these steps:
 1. Download the plugin zip file from https://wordpress.org/plugins/wp-tournament-registration/
 2. In your wp-admin (WordPress dashboard), go to Plugins Menu > Add New
-3. Click the \'Upload Plugin\' button at the top.
+3. Click the 'Upload Plugin' button at the top.
 4. Upload the zip file you downloaded in Step 1.
 5. Once the upload is finish, click on Activate.
 
