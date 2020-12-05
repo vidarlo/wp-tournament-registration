@@ -90,7 +90,7 @@ function wptournreg_get_list( $atts = [] ) {
 		
 			foreach( $fields as $field ) {
 				
-				if ( array_key_exists( $field, $participant ) ) {
+				if ( isset( $participant->{ $field } ) ) {
 											
 					if ( $protected && in_array( $field, $protected_fields ) && !empty( $participant->{ $field } ) ) {
 						

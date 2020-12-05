@@ -84,7 +84,7 @@ function wptournreg_edit( $atts = [] ) {
 		
 		foreach( $fields as $field ) {
 			
-			if ( array_key_exists( $field, $scheme ) ) {
+			if ( isset( $scheme[ $field ] ) ) {
 				
 				$html .= '<p><label for="' . esc_attr( $field ) . '"><kbd>' . esc_html( $field ) . '</kbd></label>';
 				
@@ -157,7 +157,7 @@ function wptournreg_edit_participant() {
 	
 	echo '<html><head></head></html><body><header style="min-height:50px"></header><p>';
 	
-	if ( array_key_exists( 'delete1', $_POST ) && array_key_exists( 'delete2',$_POST ) && array_key_exists( 'delete3', $_POST ) ) {
+	if ( isset(  $_POST[ 'delete1' ] ) && isset( $_POST[ 'delete2' ] ) && isset( $_POST[ 'delete3' ] ) ) {
 		
 		if ( $wpdb->delete( WP_TOURNREG_DATA_TABLE, array( 'id' => $_POST[ 'id' ] ) ) === 1 ) {
 		

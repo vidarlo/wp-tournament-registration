@@ -47,7 +47,7 @@ function wptournreg_get_fields( $atts = [] ) {
 		return sprintf( __( '%sERROR: The field value of %s is generated automatically!%s', 'wp-tournament-registration' ), '<strong class="wptournreg-error">', "<kbd>$field</kbd>", '</strong>' );
 	}
 	
-	if ( !array_key_exists( $field, $scheme ) ) {
+	if ( !isset( $scheme[ $field ] ) ) {
 		
 		return sprintf( __( '%sERROR: There is not a field %s!%s', 'wp-tournament-registration' ), '<strong class="wptournreg-error">', "<kbd>$field</kbd>", '</strong>' );
 	}

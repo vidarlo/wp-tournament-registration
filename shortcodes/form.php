@@ -64,14 +64,14 @@ function wptournreg_add_participant() {
 	
 	echo '<html><head></head><body><header style="min-height:50px"></header>';
 	
-	if ( array_key_exists( 'touched', $_POST ) ) {
+	if ( isset( $_POST[ 'touched' ] ) ) {
 		
 		if ( wptournreg_insert_data() === 1 ) {
 			
 			printf( __( '%sThank you for your registration.%s', 'wp-tournament-registration'), '<strong class="wptournreg-thanks">', '</strong>' );
 			
 			/* send E-mail notification */
-			if ( array_key_exists( 'cc', $_POST ) ) {
+			if ( isset( $_POST[ 'cc' ] ) ) {
 				
 				require_once WP_TOURNREG_DATABASE_PATH . 'escape.php';
 				$addressee = preg_split( '/\s*,\s*/', wptournreg_escape( $_POST[ 'cc' ] ) );

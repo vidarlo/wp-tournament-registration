@@ -62,7 +62,7 @@ function wptournreg_get_txt() {
 	
 	$formatted = [];
 	
-	$linebreak = ( !array_key_exists( 'linebreak', $_POST ) || empty ( $_POST[ 'linebreak' ] ) ) ? '' : "\n";
+	$linebreak = ( !isset( $_POST[ 'linebreak' ]  ) || empty ( $_POST[ 'linebreak' ] ) ) ? '' : "\n";
 	
 	$fields_set = preg_split( '/\s*,\s*/', $_POST[ 'fields_set' ] );
 	
@@ -76,7 +76,7 @@ function wptournreg_get_txt() {
 				
 				foreach( $fields_set as $available ) {
 					
-					if ( !array_key_exists( $available, $participant ) || empty ( $participant->{ $available } ) ) {
+					if ( !isset( $participant->{ $available } ) || empty ( $participant->{ $available } ) ) {
 						
 						$found = false;
 						break;  
