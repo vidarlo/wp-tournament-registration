@@ -14,9 +14,11 @@ function wptournreg_insert_data() {
 	$fields = [];
 	$placeholder = [];
 	
+	ksort( $_POST ); // needed for duplicate checks
+	
 	foreach( $_POST as $field => $value ) {
 		
-		if ( $field == 'id' || $field == 'time' || $field == 'cc' || $field == 'touched'|| $field == 'ip' ) { continue; }
+		if ( $field == 'id' || $field == 'time' || $field == 'cc' || $field == 'touched' || $field == 'ip' || $field == 'hash' ) { continue; }
 		
 		if ( isset( $scheme[ $field ] ) ) {
 				
@@ -65,6 +67,9 @@ function wptournreg_insert_data() {
 	$placeholder[] = '%d';
 	$fields[] = 'ip';
 	$data[] = $_SERVER[ 'REMOTE_ADDR' ];
+	$placeholder[] = '%s';
+	$fields[] = 'hash';
+	$data[] = md5( implode( '|', $_POST ) );
 	$placeholder[] = '%s';
 	
 	return $wpdb->query( $wpdb->prepare( 'INSERT INTO ' . WP_TOURNREG_DATA_TABLE . '(' . implode( ', ', $fields ) . ') VALUES (' . implode( ', ', $placeholder ) . ');', $data ) );
