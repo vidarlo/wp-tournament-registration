@@ -105,7 +105,7 @@ function wptournreg_add_participant() {
 		else {
 			
 			global $wpdb;
-			if ( strpos ( $wpdb->last_error ), 'Duplicate entry' ) {
+			if ( strpos( $wpdb->last_error, 'Duplicate entry' ) ) {
 				
 				printf( __( '%sFailed: this looks like a duplicate!%s', 'wp-tournament-registration'), '<strong class="wptournreg-error">', '</strong>' );
 			}
