@@ -18,6 +18,12 @@ function wptournreg_upgrade() {
 			$wpdb->query('UPDATE ' . WP_TOURNREG_DATA_TABLE . ' SET approved = 1 WHERE 1;' );
 		}
 		
+		if ( version_compare( $db_ver, '4', '<' ) ) {
+			
+			$wpdb->query('ALTER TABLE ' . WP_TOURNREG_DATA_TABLE . ' ADD COLUMN hash varchar(32) DEFAULT NULL;' );
+			$wpdb->query('ALTER TABLE ' . WP_TOURNREG_DATA_TABLE . ' ADD UNIQUE (hash);' );
+		}
+		
 		update_option( 'wptournreg_db_version', WP_TOURNREG_DB_VER );
 	}
 	

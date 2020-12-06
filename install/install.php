@@ -40,7 +40,9 @@ function wptournreg_install() {
 		custom3 tinytext DEFAULT '' NOT NULL,
 		custom4 tinytext DEFAULT '' NOT NULL,
 		custom5 tinytext DEFAULT '' NOT NULL,
-		PRIMARY KEY  (id)
+		hash varchar(32) DEFAULT NULL,
+		UNIQUE (hash),
+		PRIMARY KEY (id)
 	) $charset_collate;";
 
 	require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
