@@ -15,7 +15,7 @@ function wptournreg_update_data( ) {
 	$placeholder = [];
 	foreach( $scheme as $field => $type ) {
 		
-		if ( $field == 'id' || $field == 'time' || $field == 'ip' || !array_key_exists( $field, $_POST ) ) {
+		if ( $field == 'id' || $field == 'time' || $field == 'ip' || !isset( $_POST[ $field ] ) ) {
 		}
 		else if ( $field == 'email' ) {
 			
@@ -36,7 +36,7 @@ function wptournreg_update_data( ) {
 			
 			if ( !empty( $_POST[ $field ] ) ) {
 			
-				$values[ $field ][ 'value' ] = intval( sanitize_text_field( $_POST[ $field ] ) );
+				$values[ $field ][ 'value' ] = ( int ) sanitize_text_field( $_POST[ $field ] );
 				$values[ $field ][ 'placeholder'] = '%d';
 			}
 			else {

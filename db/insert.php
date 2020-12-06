@@ -18,7 +18,7 @@ function wptournreg_insert_data() {
 		
 		if ( $field == 'id' || $field == 'time' || $field == 'cc' || $field == 'touched'|| $field == 'ip' ) { continue; }
 		
-		if ( array_key_exists( $field, $scheme ) ) {
+		if ( isset( $scheme[ $field ] ) ) {
 				
 			if ( $field == 'email' ) {
 
@@ -44,7 +44,7 @@ function wptournreg_insert_data() {
 				
 				if ( preg_match( '/\d+/', $value ) ) {
 					
-					$data[] =  intval( sanitize_text_field( $value ) );
+					$data[] =  ( int ) sanitize_text_field( $value );
 					$placeholder[] = '%d';
 				}
 				else { continue; } // NULL is default
