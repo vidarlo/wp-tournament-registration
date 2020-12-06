@@ -144,6 +144,10 @@ The development repository is hosted on [GitHub](https://github.com/CarlOrff/wp-
 
 == Frequently Asked Questions ==
 
+= Is it compatible with PHP 8? =
+
+Yes!
+
 = How to escape characters in export formats? =
 
 The shortcode is rendered as HTML which means that there are some protected characters. Fi. if you need tabsops, provide them as HTML entities (`&#9;` in this case).
