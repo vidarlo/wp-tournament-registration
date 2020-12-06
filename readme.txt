@@ -169,6 +169,8 @@ WP Tournament Registration does some checks to avoid spam.
 = 1.1.0 =
 
 * Removed deprecated `array_key_exists()` for PHP 8 compatibility.
+* Removed deprecated array and string offset access syntax with curly braces
+* `css` attribute now works in `wptournregfield`
 
 = 1.0.0 =
 

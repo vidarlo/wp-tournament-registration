@@ -76,7 +76,7 @@ function wptournreg_get_txt() {
 				
 				foreach( $fields_set as $available ) {
 					
-					if ( !isset( $participant->{ $available } ) || empty ( $participant->{ $available } ) ) {
+					if ( !isset( $participant->{ $available } ) ) {  # isset 
 						
 						$found = false;
 						break;  
