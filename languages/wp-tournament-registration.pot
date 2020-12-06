@@ -61,11 +61,23 @@ msgid "%sERROR: There is not a field %s!%s"
 msgstr ""
 
 # shortcodes/form.php
+msgid "%sFailed: this looks like a duplicate!%s"
+msgstr ""
+
+# shortcodes/form.php
 msgid "%sThank you for your registration.%s"
 msgstr ""
 
 # shortcodes/form.php
 msgid "%sRegistration failed!%s"
+msgstr ""
+
+# shortcodes/form.php
+msgid "%sFailed: enable JavaScript!%s"
+msgstr ""
+
+# shortcodes/form.php
+msgid "%sFailed: this looks like a duplicate!%s"
 msgstr ""
 
 # shortcodes/form.php

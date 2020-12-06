@@ -70,6 +70,14 @@ msgid "%sRegistration failed!%s"
 msgstr "%sDie Anmeldung ist fehlgeschlagen!%s"
 
 # shortcodes/form.php
+msgid "%sFailed: enable JavaScript!%s"
+msgstr "Fehler: JavaScript muß aktiviert sein!"
+
+# shortcodes/form.php
+msgid "%sFailed: this looks like a duplicate!%s"
+msgstr  "%sFehler: die Anmeldung ist eine Dublette!%s"
+
+# shortcodes/form.php
 msgid "Enable JavaScript!"
 msgstr "Bitte JavaScript anschalten!"
 
