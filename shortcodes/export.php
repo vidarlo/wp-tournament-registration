@@ -23,7 +23,7 @@ function wptournreg_export( $atts = [], $content = null ) {
 	wp_enqueue_script( 'wptournreg' );
 	wp_enqueue_style( 'wptournreg' );
 	
-	$all = ( !empty ( $a[ 'all' ] ) ) ? true : false;
+	$all = ( !empty ( $a[ 'all' ] ) ) ? "<input type='hidden' name='all' value='1'>"  : '';
 	
 	/* error if tournament id is missing */
 	if ( empty ( $a[ 'tournament_id' ] ) ) {
@@ -48,7 +48,7 @@ function wptournreg_export( $atts = [], $content = null ) {
 	/* set action URL */
 	$action = ' method="POST" action="' . WP_TOURNREG_ACTION_URL . '"';
 
-	return "<form$id$class$css$action target='_blank'><p><strong>$content</strong></p>$tournament$format$linebreak$fields_set$filename" . '<input type="hidden" name="action" value="wptournreg_get_txt"><input type="submit"></form>';
+	return "<form$id$class$css$action target='_blank'><p><strong>$content</strong></p>$tournament$format$linebreak$fields_set$filename$all" . '<input type="hidden" name="action" value="wptournreg_get_txt"><input type="submit"></form>';
 	
 }
 
@@ -68,7 +68,7 @@ function wptournreg_get_txt() {
 	
 	foreach( $result as $participant ) {
 		
-		if ( $participant->{ 'approved' } || $all ) {
+		if ( $participant->{ 'approved' } || isset( $_POST[ 'all' ] ) ) {
 		
 			$found = true;
 			
