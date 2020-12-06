@@ -53,7 +53,7 @@ function wptournreg_get_fields( $atts = [] ) {
 	}
 	else if ( $field == 'email' ) {
 		
-		return "<p$id$class$style>$label<input$id$class$name$required$disabled$placeholder type='email' size='$bigsize'></p>";
+		return "<p$id$class$css>$label<input$id$class$name$required$disabled$placeholder type='email' size='$bigsize'></p>";
 	}
 	else if ( preg_match( '/^phone\d+/i', $scheme[ $field ] ) ) {
 		

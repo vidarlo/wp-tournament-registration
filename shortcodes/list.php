@@ -46,9 +46,9 @@ function wptournreg_get_list( $atts = [] ) {
 	$protected_fields = preg_split( '/\s*,\s*/', $a[ 'protected_fields' ]);
 	
 	/* add custom CSS */
-	$css = ( empty ( $a{ 'css' } ) ) ? '' : ' style="' . trim( esc_attr( $a{ 'css' } ) ) . '"';
-	$class = ' class="wptournreg-list' . ( empty ( $a{ 'class' } ) ? '' : ' ' . trim( esc_attr( $a{ 'class' } ) ) ). '"';
-	$id = ( empty ( $a{ 'css_id' } ) ) ? '' : ' id="' . trim( esc_attr( $a{ 'css_id' } ) ). '"';
+	$css = ( empty ( $a[ 'css' ] ) ) ? '' : ' style="' . trim( esc_attr( $a[ 'css' ] ) ) . '"';
+	$class = ' class="wptournreg-list' . ( empty ( $a[ 'class' ] ) ? '' : ' ' . trim( esc_attr( $a[ 'class' ] ) ) ). '"';
+	$id = ( empty ( $a[ 'css_id' ] ) ) ? '' : ' id="' . trim( esc_attr( $a[ 'css_id' ] ) ). '"';
 	
 	
 	/* Print table */
@@ -128,7 +128,7 @@ function wptournreg_get_list( $atts = [] ) {
 	
 	$html .= '</tbody></table></figure>';
 	
-	if ( !empty ( $a{ 'backlink' } ) ) {
+	if ( !empty ( $a[ 'backlink' ] ) ) {
 		require_once WP_TOURNREG_HTML_PATH . 'backlink.php';
 		$html .= wptournreg_get_backlink( 'list' );
 	}
