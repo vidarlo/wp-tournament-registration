@@ -5,7 +5,7 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 /*
 * Plugin Name:         WP Tournament Registration
 * Plugin URI:          https://ingram-braun.net/erga/wp-tournament-registration-wordpress-plugin/
-* Version:             1.1.0
+* Version:             1.1.1
 * Requires at least:   5.3
 * Requires PHP:        7.2
 * Author:              Ingram Braun
@@ -19,7 +19,7 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 /* VERSIONS */
 define( "WP_TOURNREG_DB_VER", 4 );
-define( "WP_TOURNREG_PLUGIN_VER", '1.1.0' );
+define( "WP_TOURNREG_PLUGIN_VER", '1.1.1' );
 define( "WP_TOURNREG_TBSORT_VER", '2.31.3' );
 
 /* PATHES */
