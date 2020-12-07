@@ -2,7 +2,7 @@
 
 *A WordPress plugin for registering players with tournaments*
 
-The plugin has passed the review by the WordPress developers of Auttomatic successfully and will be available through their plugin repository in short.
+The plugin was originally made for the WordPress blog of [my local chess club ESV Rot-Weiß Göttingen](https://schach-goettingen.de/) in order to ease the registration process for the open club championship.
 
 ## Installation and Usage
 
