@@ -2,7 +2,7 @@
 
 *A WordPress plugin for registering players with tournaments*
 
-The plugin was originally made for the WordPress blog of [my local chess club ESV Rot-Weiß Göttingen](https://schach-goettingen.de/) in order to ease the registration process for the open club championship.
+The plugin was originally developed for the WordPress blog of [my local chess club ESV Rot-Weiß Göttingen](https://schach-goettingen.de/) in order to ease the registration process for the open club championship.
 
 ## Installation and Usage
 
@@ -10,7 +10,7 @@ Head over to WordPress' plugin repository [WP Tournament Registration](https://w
 
 ## License
 
-© 2020 Ingram Braun [https://ingram-braun.net/](https://ingram-braun.net/#ib_campaign=wptournreg&ib_medium=repository&ib_source=readme&ib_content=copyright)
+© 2020–2021 Ingram Braun [https://ingram-braun.net/](https://ingram-braun.net/#ib_campaign=wptournreg&ib_medium=repository&ib_source=readme&ib_content=copyright)
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
