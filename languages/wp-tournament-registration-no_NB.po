@@ -1,0 +1,83 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Tournament Registration\n"
+"Report-Msgid-Bugs-To: Ingram Braun <ibraun@cpan.org>\n"
+"Language-Team: Ingram Braun <ibraun@cpan.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-01-28T10:35:50+01:00\n"
+"PO-Revision-Date: 2021-09-24 13:27+0200\n"
+"X-Generator: Poedit 3.0\n"
+"X-Domain: languages\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: nb\n"
+
+# html/backbutton.php
+msgid "Back"
+msgstr "Tilbake"
+
+# html/backlink.php
+msgid "%s by %s"
+msgstr "%s av %s"
+
+# shortcodes/edit.php
+msgid "Are you sure?"
+msgstr "Er du sikker?"
+
+# shortcodes/edit.php
+msgid "Cannot restore!"
+msgstr "Kan ikke gjenopprette!"
+
+# shortcodes/edit.php
+msgid "Delete"
+msgstr "Slett"
+
+# shortcodes/edit.php
+msgid "Entry updated."
+msgstr "Påmelding oppdatert."
+
+# shortcodes/edit.php
+msgid "%sERROR: Entry not updated.%s"
+msgstr "%sFEIL: Påmelding ikke oppdatert. %s"
+
+# shortcodes/edit.php
+# shortcodes/export.php
+# shortcodes/form.php
+# shortcodes/list.php
+msgid "%sERROR: Missing %s in shortcode %s!%s"
+msgstr "%sFEIL: Mangler %s i kortkode %s!%s"
+
+# shortcodes/edit.php
+# shortcodes/field.php
+msgid "%sERROR: Missing format for field %s!%s"
+msgstr "%sFEIL: Manglende format for feltet %s!%s"
+
+# shortcodes/field.php
+msgid "%sERROR: The field value of %s is generated automatically!%s"
+msgstr "%sFEIL: Feltverdien for %s er automatisk generert!%s"
+
+# shortcodes/field.php
+msgid "%sERROR: There is not a field %s!%s"
+msgstr "%sFEIL: Feltet %s finst ikke!%s"
+
+# shortcodes/form.php
+msgid "%sFailed: this looks like a duplicate!%s"
+msgstr "%sFeil: dette ser ut som et duplikat!%s"
+
+# shortcodes/form.php
+msgid "%sThank you for your registration.%s"
+msgstr "%sTakk for registreringen.%s"
+
+# shortcodes/form.php
+msgid "%sRegistration failed!%s"
+msgstr "%sRegistreringen feilet!%s"
+
+# shortcodes/form.php
+msgid "%sFailed: enable JavaScript!%s"
+msgstr "%sFeil: Du må aktivere JavaScript!%s"
+
+# shortcodes/form.php
+msgid "New participant"
+msgstr "Ny deltager"
