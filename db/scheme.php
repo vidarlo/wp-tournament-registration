@@ -21,5 +21,5 @@ function wptournreg_get_field_list() {
 	}
 	
 	return $fields;
-	
+	print($fields);
 }

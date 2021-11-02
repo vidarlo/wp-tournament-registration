@@ -3,24 +3,24 @@
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
  
 /*
-* Plugin Name:         WP Tournament Registration
-* Plugin URI:          https://ingram-braun.net/erga/wp-tournament-registration-wordpress-plugin/
-* Version:             1.1.2
+* Plugin Name:         WP Pinball Tournament Registration
+* Plugin URI:          https://github.com/vidarlo/wp-tournament-registration
+* Version:             1.2.0
 * Requires at least:   5.3
 * Requires PHP:        7.0
-* Author:              Ingram Braun
+* Author:              Ingram Braun / Vidar Løkken
 * Author URI:          https://ingram-braun.net/
 * License:             GPL v2 or later
 * License URI:         https://www.gnu.org/licenses/gpl-2.0.html
-* Description:         Simple tournament registration form
-* Text Domain:         wp-tournament-registration
+* Description:         Simple tournament registration form for Pinball
+* Text Domain:         wp-pinball-tournament-registration
 * Domain Path:         /languages
 */
 
 /* VERSIONS */
 define( "WP_TOURNREG_DB_VER", 4 );
-define( "WP_TOURNREG_PLUGIN_VER", '1.1.2' );
-define( "WP_TOURNREG_TBSORT_VER", '2.31.3' );
+define( "WP_TOURNREG_PLUGIN_VER", '1.2.0' );
+define( "WP_TOURNREG_TBSORT_VER", '1.0' );
 
 /* PATHES */
 define( "WP_TOURNREG_PLUGIN_PATH", plugin_dir_path( __FILE__ ) );

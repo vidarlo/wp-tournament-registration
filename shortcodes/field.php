@@ -5,15 +5,15 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 /* stores the form data (no params) */
 function wptournreg_get_fields( $atts = [] ) {
 	
-	require_once WP_TOURNREG_DATABASE_PATH . 'scheme.php';
-	$scheme = wptournreg_get_field_list();
-	
-	global $wpdb;
-	
-	// normalize attribute keys, lowercase
-    $atts = array_change_key_case((array)$atts, CASE_LOWER);
- 
-	$a = shortcode_atts( array(
+  require_once WP_TOURNREG_DATABASE_PATH . 'scheme.php';
+  $scheme = wptournreg_get_field_list();
+  
+  global $wpdb;
+  
+  // normalize attribute keys, lowercase
+  $atts = array_change_key_case((array)$atts, CASE_LOWER);
+  
+  $a = shortcode_atts( array(
 		'checked' => null,
 		'class' => null,
 		'css' => null,
@@ -22,8 +22,7 @@ function wptournreg_get_fields( $atts = [] ) {
 		'field' => null,
 		'label' => null,
 		'placeholder' => null,
-		'required' => null,
-	), $atts );
+		'required' => null,), $atts );
 	
 	$field = trim( $a[ 'field' ] );
 	$checked = ( empty ( $a[ 'checked' ] ) ) ? '' : ' required="checked"';

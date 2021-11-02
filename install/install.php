@@ -20,6 +20,7 @@ function wptournreg_install() {
 		lastname tinytext DEFAULT '' NOT NULL,
 		firstname tinytext DEFAULT '' NOT NULL,
 		email tinytext NOT NULL,
+		tag varchar(3) DEFAULT '' NOT NULL,
 		phone varchar(64) DEFAULT '' NOT NULL,
 		ifpanumber mediumint(9) DEFAULT NULL,
 		place tinytext DEFAULT '' NOT NULL,
